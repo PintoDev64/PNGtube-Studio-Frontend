@@ -1,0 +1,55 @@
+#AdminTool {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border-bottom: 2px solid #000000;
+}
+
+#topWindowTollbar {
+    -webkit-app-region: drag;
+    width: 100%;
+    height: 45px;
+    display: grid;
+    place-items: center;
+}
+
+#topWindowTollbar>h3 {
+    margin: 0;
+}
+
+#topper {
+    width: 100%;
+    height: 45px;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.tolltip_bar_buttons {
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    transition: all 0.25s ease;
+}
+
+#minimize:hover,
+#settings:hover {
+    background-color: #00aaff;
+}
+
+#window:hover {
+    background-color: #747474;
+}
+
+#close:hover {
+    background-color: #ff0000;
+}
