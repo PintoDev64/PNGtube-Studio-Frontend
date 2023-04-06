@@ -1,13 +1,13 @@
 function Close() {
-    window.admintools.EventWindow('close');
+    window.pngtubeAPI.EventWindow('close');
 }
 
 function Minimize() {
-    window.admintools.EventWindow('minimize');
+    window.pngtubeAPI.EventWindow('minimize');
 }
 
 function Restore() {
-    window.admintools.EventWindow('restore');
+    window.pngtubeAPI.EventWindow('restore');
 }
 
 export {
