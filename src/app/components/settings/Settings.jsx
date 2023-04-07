@@ -31,8 +31,9 @@ export default function Settings() {
             <div id="Settings">
                 <article id="SettingsSection">
                     <aside id="SettingsNav">
-                        <img src={resources['Default.png']} alt="Aplication Logo" width={250}/>
-                        <hr className="hr-titles"/>
+                        <img src={resources['Default.png']} alt="Aplication Logo" width={250} />
+                        <hr className="hr-titles" />
+                        <h3>Aplicacion</h3>
                         <ul>
                             {
                                 SettingsSections.map(section => {
