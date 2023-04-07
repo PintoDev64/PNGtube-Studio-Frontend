@@ -16,8 +16,8 @@ function App() {
       <main id="App">
         <AdminTool />
         <BrowserRouter>
-          <Settings />
         </BrowserRouter>
+        <Settings />
         Hola mundo
       </main>
     </GlobalComponent>

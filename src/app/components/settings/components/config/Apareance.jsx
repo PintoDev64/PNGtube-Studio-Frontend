@@ -11,7 +11,11 @@ export default function Apareance() {
     return (
         <>
             <aside id="ApareancePreview">
-                <img src={wallpaper} alt="Background Apareance Preview"/>
+                {
+                    type === 'Color'
+                    ? <div style={{ background: color, width: 500, height: 312 }}></div>
+                    : <img src={wallpaper} alt="Background Apareance Preview" width={500} height={312}/>
+                }
             </aside>
             <aside id="ApareanceOptions">
 

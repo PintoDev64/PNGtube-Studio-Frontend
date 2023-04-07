@@ -1,25 +1,23 @@
 export default function GlobalReducer(state, { action, value }) {
     // Add dictionaries
     const dictionary = {
-        color: () => {
-            return {
-                ...state,
-                color: value
-            }
+        color: {
+            ...state,
+            color: value
         },
-        wallpaper: () => {
-            return {
-                ...state,
-                wallpaper: value
-            }
+        wallpaper: {
+            ...state,
+            wallpaper: value
         },
-        type: () => {
-            return {
-                ...state,
-                type: value
-            }
+        type: {
+            ...state,
+            type: value
         },
+        settings: {
+            ...state,
+            settings: value
+        }
     }
 
-    dictionary[action]();
+    return dictionary[action];
 }

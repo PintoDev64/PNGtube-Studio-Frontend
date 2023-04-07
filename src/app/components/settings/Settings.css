@@ -1,0 +1,59 @@
+#Settings {
+    background: #353535;
+    position: absolute;
+    width: 100%;
+    height: 93.5%;
+    display: grid;
+    place-items: center;
+}
+
+#SettingsSection {
+    background: #ffffff;
+    border: 2px solid #000000;
+    width: 1000px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+}
+
+#SettingsNav {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#SettingsNav ul {
+    width: 150px;
+}
+
+.SettingsListOptions {
+    list-style: none;
+}
+
+.SettingsListButtons {
+    width: 100%;
+    border: none;
+    background: none;
+    height: 25px;
+    border-radius: 3px;
+}
+
+.SettingsListButtons:hover {
+    outline: 1px solid #000000;
+    transform: scale(1.05);
+}
+
+.hr-titles {
+    height: 3px;
+    border: none;
+    width: 95%;
+    background: #000000;
+    margin: 10px 0 10px;
+}
+
+#SettingsOptions {
+    width: 700px;
+    height: 100%;
+}

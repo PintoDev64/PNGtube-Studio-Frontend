@@ -11,10 +11,14 @@ export default function GlobalComponent({ children }) {
 
     const { colorBackground, wallpaperBackground, typeBackground } = window.pngtubeAPI.appConfig();
 
+    const files = window.pngtubeAPI.appResources();
+
     const defaultProps = {
         color: colorBackground,
         wallpaper: wallpaperBackground,
-        type: typeBackground
+        type: typeBackground,
+        resources: files,
+        settings: false
     };
 
     const [state, dispatch] = useReducer(GlobalReducer, defaultProps);
@@ -37,6 +41,12 @@ export default function GlobalComponent({ children }) {
                 action: 'type',
                 value: typeBack
             })
+        },
+        settings: (open) => {
+            dispatch({
+                action: 'settings',
+                value: open
+            })
         }
     }
 
@@ -45,6 +55,8 @@ export default function GlobalComponent({ children }) {
             color: state.color,
             wallpaper: state.wallpaper,
             type: state.type,
+            settings: state.settings,
+            resources: state.resources,
             functions
         }}>
             {children}
