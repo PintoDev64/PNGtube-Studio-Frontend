@@ -1,9 +1,6 @@
 // Node Modules
 import { useContext } from 'react';
 
-// Imagenes
-import { Hicon, Settingsicon, Xicon, _icon } from '../../resources/exports'
-
 // Contexts
 import { Global } from "../../context/contexts";
 
@@ -15,8 +12,6 @@ import './Admintools.css'
 export default function AdminTool() {
 
     const { settings, functions, resources } = useContext(Global);
-
-    console.log(resources);
 
     return (
         <header id="AdminTool">

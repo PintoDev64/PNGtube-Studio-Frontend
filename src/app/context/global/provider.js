@@ -47,11 +47,20 @@ export default function GlobalComponent({ children }) {
                 action: 'settings',
                 value: open
             })
+        },
+        uploadConfig: () => {
+            window.pngtubeAPI.uploadConfig({
+                color: state.color,
+                wallpaper: state.wallpaper,
+                type: state.type,
+            })
         }
     }
 
     return (
         <Global.Provider value={{
+            state,
+            defaultProps,
             color: state.color,
             wallpaper: state.wallpaper,
             type: state.type,
