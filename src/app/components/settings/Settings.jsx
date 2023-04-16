@@ -10,11 +10,15 @@ import Advanced from "./components/config/Advanced";
 // Contexts
 import { Global } from "../../context/contexts";
 
+// Hooks
+import useSubmitConfig from "../../hooks/submitConfig";
+
 // Css
 import './Settings.css'
-import SaveSettings from "./components/SaveSettings";
 
 export default function Settings() {
+
+    const { SubmitConfig } = useSubmitConfig();
 
     const { settings, resources, functions, state, defaultProps } = useContext(Global);
 
@@ -35,13 +39,13 @@ export default function Settings() {
         let settingsState = functions.compararObjetos(state, defaultProps);
         if (settingsState === false) {
             return (
-                <>
+                <article id="SettingsRestart">
                     <div className="text">
                         <h4>Tienes cambios sin guardar</h4>
                         <h6>los cambios se aplica al reiniciar</h6>
                     </div>
-                    <button id="SaveSettingsButton">Guardar</button>
-                </>
+                    <button id="SaveSettingsButton" onClick={SubmitConfig}>Guardar</button>
+                </article>
             )
         }
     }
@@ -62,8 +66,7 @@ export default function Settings() {
                                         return (
                                             <li key={section.id} id={section.name} className="SettingsListOptions">
                                                 <button className={`SettingsListButtons ${Section === section.id ? 'selected' : ''}`} onClick={() => {
-                                                    setSection(section.id);
-                                                    console.log(Section);
+                                                    setSection(section.id)
                                                 }}>
                                                     <h4>
                                                         {section.value}
@@ -80,9 +83,7 @@ export default function Settings() {
                         </section>
                     </article>
                 </div>
-                <article id="SettingsRestart">
-                    <SaveSettings/>
-                </article>
+                <SaveSettings />
             </Suspense>
         )
     }

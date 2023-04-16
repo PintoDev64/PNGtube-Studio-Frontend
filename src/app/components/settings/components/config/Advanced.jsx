@@ -17,7 +17,7 @@ export default function Advanced() {
                 {
                     SettingsContent.Advanced.map(({ Id, Component, functionsProp, Data }) => {
                         return (
-                            <Component key={Id} functionProp={functionsProp} style={ hardware ? 'flex-start' : 'flex-end'} props={Data} />
+                            <Component key={Id} functionProp={functionsProp} style={ !hardware ? 'flex-start' : 'flex-end'} props={Data} />
                         )
                     })
                 }

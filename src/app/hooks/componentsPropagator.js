@@ -14,32 +14,26 @@ const { wallpapers } = window.pngtubeAPI.getWallpapers();
 
 export default function useSettingsContentFunction() {
 
-    const { type, functions, hardware, state, defaultProps } = useContext(Global);
+    const { type, functions, hardware } = useContext(Global);
 
     // Advanced
     function hardwareAccelerationAllow() {
-        console.log(hardware);
         functions.hardwareAcceleration(!hardware);
-        console.log(functions.compararObjetos(state, defaultProps));
     };
     // Apareance
     function typeApareance() {
-        console.log(functions.compararObjetos(state, defaultProps));
         type === 'Color'
             ? functions.type('Image')
             : functions.type('Color')
     };
     function backgroundApareance(nameBackground) {
         functions.wallpaper(nameBackground);
-        console.log(functions.compararObjetos(state, defaultProps));
     };
     function colorApareance(hex) {
         functions.color(hex);
-        console.log(functions.compararObjetos(state, defaultProps));
     };
     function changeBrightness(percent) {
-        console.log(percent);
-        console.log(functions.compararObjetos(state, defaultProps));
+        functions.brightness(percent);
     };
 
     const SettingsContent = {
