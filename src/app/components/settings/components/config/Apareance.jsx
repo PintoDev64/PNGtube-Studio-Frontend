@@ -1,46 +1,38 @@
+import { useContext, Suspense } from "react";
 // Contexts
-import { useContext } from "react";
 import { Global } from "../../../../context/contexts";
 
-// Components
-import SettingsContent from "../../componentsPropagator";
+// Hooks
+import useSettingsContentFunction from "../../../../hooks/componentsPropagator";
 
 export default function Apareance() {
 
-    const { color, wallpaper, type, functions } = useContext(Global);
+    const { color, wallpaper, type } = useContext(Global);
 
-    // Functions
-    const TypeApreance = () => {
-        type === 'Color'
-        ? functions.type('Image')
-        : functions.type('Color')
-    }
+    const { SettingsContent } = useSettingsContentFunction();
 
     return (
-        <>
+        <Suspense fallback={<h3>Cargando...</h3>}>
             <aside id="ApareancePreview">
+                <h3>Vista Previa</h3>
                 {
                     type === 'Color'
                         ? <div style={{ background: color, width: 500, height: 312 }}></div>
-                        : <img src={wallpaper} alt="Background Apareance Preview" width={500} height={312} />
+                        : <img src={wallpaper} alt="Background Apareance Preview" width={500} height={280} />
                 }
             </aside>
             <hr className="hr-titles" />
             <aside id="ApareanceOptions">
                 {
-                    SettingsContent.Apareance.map(({ Id, Component, Data }) => {
+                    SettingsContent.Apareance.map(({ Id, Component, functionsProp, Data }) => {
                         return (
-                            <Component key={Id} functionProp={TypeApreance} style={type === 'Color' ? 'flex-start' : 'flex-end' } props={Data}/>
+                            <Component key={Id} functionProp={functionsProp} style={type === 'Color' ? 'flex-start' : 'flex-end'} props={Data} />
                         )
                     })
                 }
-                <div className="ApareanceOptions_Selector">
-                    <div className="ExecutionOptions"></div>
-                    <h4 className="DefinitionOptions">Def</h4>
-                </div>
                 <div className="ApareanceOptions_Radio">
                 </div>
             </aside>
-        </>
+        </Suspense>
     )
 }

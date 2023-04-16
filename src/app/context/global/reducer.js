@@ -16,6 +16,21 @@ export default function GlobalReducer(state, { action, value }) {
         settings: {
             ...state,
             settings: value
+        },
+        brightness: {
+            ...state,
+            brightness: value.toString()
+        },
+        hardwareAcceleration: {
+            ...state,
+            hardware: value
+        },
+        all: {
+            ...state,
+            color: value.colorBackground,
+            wallpaper: value.wallpaper,
+            type: value.type,
+            name: value.name
         }
     }
 

@@ -7,7 +7,7 @@ export default function Types({ functionProp, style, props }) {
                     <h4>{props.text}</h4>
                     <h6 className="DefinitionOptions">{props.definition}</h6>
                 </div>
-                <div className="Selectors">
+                <div className="Switchs">
                     <h4>{props.selects.f}</h4>
                     <button style={{
                         justifyContent: style
@@ -18,6 +18,5 @@ export default function Types({ functionProp, style, props }) {
                 </div>
             </div>
         </div>
-
     )
 }

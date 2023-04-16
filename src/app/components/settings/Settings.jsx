@@ -18,21 +18,31 @@ export default function Settings() {
 
     const { settings, resources, functions, state, defaultProps } = useContext(Global);
 
-    const [Section, setSection] = useState(1)
+    const [Section, setSection] = useState(1);
 
     /// Pseudo-Component
     function Options({ StateSection }) {
-        if (StateSection === 1) return <Apareance />
-        if (StateSection === 2) return <Advanced />
-    }
+        if (StateSection === 1) return (
+            <Apareance />
+        )
+        if (StateSection === 2) return (
+            <Advanced />
+        )
+    };
 
-    function SaveConfig({ current, previus, update }) {
-        if (current.color !== previus.color || current.type !== previus.type || current.wallpaper !== previus.wallpaper) {
-            console.log(current.color, previus.color);
-            console.log(current.type, previus.type);
-            console.log(current.wallpaper, previus.wallpaper);
-            console.log('cambio');
-            return (<SaveSettings saveSettings={update} />)
+    /// Pseudo-Compoent
+    function SaveSettings() {
+        let settingsState = functions.compararObjetos(state, defaultProps);
+        if (settingsState === false) {
+            return (
+                <>
+                    <div className="text">
+                        <h4>Tienes cambios sin guardar</h4>
+                        <h6>los cambios se aplica al reiniciar</h6>
+                    </div>
+                    <button id="SaveSettingsButton">Guardar</button>
+                </>
+            )
         }
     }
 
@@ -42,7 +52,8 @@ export default function Settings() {
                 <div id="Settings">
                     <article id="SettingsSection">
                         <aside id="SettingsNav">
-                            <img src={resources['Default.png']} alt="Aplication Logo" width={250} />
+                            <h3>Configuracion</h3>
+                            <img src={resources['Default.png']} alt="Aplication Logo" width={150} />
                             <hr className="hr-titles" />
                             <h3>Aplicacion</h3>
                             <ul>
@@ -50,11 +61,13 @@ export default function Settings() {
                                     SettingsSections.map(section => {
                                         return (
                                             <li key={section.id} id={section.name} className="SettingsListOptions">
-                                                <button className="SettingsListButtons" onClick={() => {
+                                                <button className={`SettingsListButtons ${Section === section.id ? 'selected' : ''}`} onClick={() => {
                                                     setSection(section.id);
                                                     console.log(Section);
                                                 }}>
-                                                    {section.value}
+                                                    <h4>
+                                                        {section.value}
+                                                    </h4>
                                                 </button>
                                             </li>
                                         )
@@ -66,8 +79,10 @@ export default function Settings() {
                             <Options StateSection={Section} />
                         </section>
                     </article>
-                    <SaveConfig current={state} previus={defaultProps} update={functions.uploadConfig} />
                 </div>
+                <article id="SettingsRestart">
+                    <SaveSettings/>
+                </article>
             </Suspense>
         )
     }

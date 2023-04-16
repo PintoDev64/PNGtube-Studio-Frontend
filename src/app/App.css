@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    transition: .5s;
+    transition: .2s;
 }
 
 #App {
@@ -10,6 +10,11 @@
 }
 
 /* Templates Styles */
+
+.selected {
+    background: #5f5f5f;
+    color: #ffffff;
+}
 
 #SaveConfig {
     position: absolute;
@@ -20,20 +25,22 @@
     background-color: #048500;
     border: none;
     border-radius: 30px;
-    outline: 1px solid  #00ff00;
+    outline: 1px solid #00ff00;
     color: #ffffff;
     width: 100px;
-    height: 50px;
+    height: 30px;
 }
 
 .ApareanceOptions_Type,
-.ApareanceOptions_Radio,
+.ApareanceOptions_Input,
 .ApareanceOptions_Selector {
     margin: 15px 0;
 }
 
 .Selectors,
-.ExecutionOptions {
+.ExecutionOptions,
+.ExecutionInput,
+.ExecutionSelector {
     display: flex;
     flex-direction: row;
 }
@@ -49,9 +56,11 @@
 .text {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
 }
 
+.Switchs,
+.Inputs,
 .Selectors {
     display: flex;
     align-items: center;
@@ -59,12 +68,12 @@
     width: 50%;
 }
 
-.Selectors h4 {
+.Switchs h4 {
     width: 100px;
     margin: 0 10px;
 }
 
-.Selectors button {
+.Switchs button {
     cursor: pointer;
     align-items: center;
     display: flex;
@@ -73,13 +82,38 @@
     margin: auto;
     background-color: #535353;
     width: 70px;
-    height: 30px;
+    height: 25px;
 }
 
-.Selectors button div {
+.Switchs button div {
     border-radius: 30px;
     margin: 0 7.5px;
     background-color: #fff;
     height: 15px;
     width: 25px;
+}
+
+.Selector_input {
+    width: 100%;
+}
+
+.Color_Input,
+.Selector_input {
+    width: 100%;
+    font-weight: bold;
+    margin: 0 10px;
+    border: none;
+    outline: 1px solid #000000;
+    border-radius: 10px;
+    height: 25px;
+    padding: 0 20px;
+}
+
+.Inputs h3 {
+    width: 30%;
+    text-align: center;
+}
+
+.Range_Input {
+    width: 70%;
 }

@@ -1,5 +1,5 @@
 // Node Modules
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 // Contexts
 import { Global } from '../contexts';
@@ -9,16 +9,20 @@ import GlobalReducer from './reducer';
 
 export default function GlobalComponent({ children }) {
 
-    const { colorBackground, wallpaperBackground, typeBackground } = window.pngtubeAPI.appConfig();
+    const { colorBackground, wallpaperBackground, typeBackground,wallpaperName, brightness } = window.pngtubeAPI.appConfig();
 
     const files = window.pngtubeAPI.appResources();
+
+    const [Settings, setSettings] = useState(false);
 
     const defaultProps = {
         color: colorBackground,
         wallpaper: wallpaperBackground,
         type: typeBackground,
+        name: wallpaperName,
         resources: files,
-        settings: false
+        hardware: false,
+        brightness: brightness
     };
 
     const [state, dispatch] = useReducer(GlobalReducer, defaultProps);
@@ -42,18 +46,28 @@ export default function GlobalComponent({ children }) {
                 value: typeBack
             })
         },
-        settings: (open) => {
+        hardwareAcceleration: (stateOF) => {
             dispatch({
-                action: 'settings',
-                value: open
+                action: 'hardwareAcceleration',
+                value: stateOF
             })
         },
-        uploadConfig: () => {
-            window.pngtubeAPI.uploadConfig({
-                color: state.color,
-                wallpaper: state.wallpaper,
-                type: state.type,
+        brightness: (value) => {
+            dispatch({
+                action: 'brightness',
+                value: value
             })
+        },
+        settings: (open) => {
+            setSettings(!Settings)
+        },
+        compararObjetos: (objeto1, objeto2) => {
+            const objeto1Str = JSON.stringify(objeto1);
+            const objeto2Str = JSON.stringify(objeto2);
+
+            console.log(objeto1Str, objeto2Str);
+
+            return objeto1Str === objeto2Str;
         }
     }
 
@@ -64,8 +78,11 @@ export default function GlobalComponent({ children }) {
             color: state.color,
             wallpaper: state.wallpaper,
             type: state.type,
-            settings: state.settings,
+            name: state.name,
+            settings: Settings,
             resources: state.resources,
+            brightness: state.brightness,
+            hardware: state.hardware,
             functions
         }}>
             {children}
