@@ -9,6 +9,10 @@ export default function GlobalReducer(state, { action, value }) {
             ...state,
             wallpaper: value
         },
+        name: {
+            ...state,
+            name: value
+        },
         type: {
             ...state,
             type: value
@@ -24,6 +28,10 @@ export default function GlobalReducer(state, { action, value }) {
         hardwareAcceleration: {
             ...state,
             hardware: value
+        },
+        trayMenu: {
+            ...state,
+            tray: value
         },
         all: {
             ...state,

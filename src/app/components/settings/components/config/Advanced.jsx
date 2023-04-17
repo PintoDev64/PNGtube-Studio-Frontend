@@ -15,9 +15,9 @@ export default function Advanced() {
         <Suspense fallback={<h3>Cargando...</h3>}>
             <aside id="ApareanceOptions">
                 {
-                    SettingsContent.Advanced.map(({ Id, Component, functionsProp, Data }) => {
+                    SettingsContent.Advanced.map(({ Id, Component, functionsProp, condition, Data }) => {
                         return (
-                            <Component key={Id} functionProp={functionsProp} style={ !hardware ? 'flex-start' : 'flex-end'} props={Data} />
+                            <Component key={Id} functionProp={functionsProp} style={condition} props={Data} />
                         )
                     })
                 }

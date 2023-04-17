@@ -16,7 +16,7 @@ export default function Selectors({ functionProp, style, props }) {
                         <h6 className="DefinitionSelector">{props.definition}</h6>
                     </div>
                     <div className="Selectors">
-                        <select className="Selector_input">
+                        <select className="Selector_input" onChange={event => functionProp(event.target.value)}>
                             {
                                 props.options.map(wallpaper => {
                                     return name === wallpaper

@@ -9,21 +9,24 @@ import GlobalReducer from './reducer';
 
 export default function GlobalComponent({ children }) {
 
-    const { colorBackground, wallpaperBackground, typeBackground,wallpaperName, brightness } = window.pngtubeAPI.appConfig();
+    const { colorBackground, wallpaperBackground, typeBackground, wallpaperName, brightness, hardwareAcceleration, trayMenu } = window.pngtubeAPI.appConfig();
 
     const files = window.pngtubeAPI.appResources();
 
     const [Settings, setSettings] = useState(false);
 
-    const defaultProps = {
+    const [defaultProps, setDefaultProps] = useState({
         color: colorBackground,
         wallpaper: wallpaperBackground,
         type: typeBackground,
         name: wallpaperName,
         resources: files,
-        hardware: false,
-        brightness: brightness
-    };
+        brightness: brightness,
+        hardware: hardwareAcceleration,
+        tray: trayMenu
+    });
+
+    console.log(defaultProps);
 
     const [state, dispatch] = useReducer(GlobalReducer, defaultProps);
 
@@ -61,11 +64,28 @@ export default function GlobalComponent({ children }) {
         settings: (open) => {
             setSettings(!Settings)
         },
+        trayMenu: (value) => {
+            dispatch({
+                action: 'trayMenu',
+                value: value
+            })
+        },
+        wallpaperName: (value) => {
+            dispatch({
+                action: 'name',
+                value: value
+            })
+        },
         compararObjetos: (objeto1, objeto2) => {
             const objeto1Str = JSON.stringify(objeto1);
             const objeto2Str = JSON.stringify(objeto2);
 
+            console.log(objeto1Str, objeto2Str);
+
             return objeto1Str === objeto2Str;
+        },
+        editDefault: (value) => {
+            setDefaultProps(value);
         }
     }
 
@@ -81,6 +101,7 @@ export default function GlobalComponent({ children }) {
             resources: state.resources,
             brightness: state.brightness,
             hardware: state.hardware,
+            trayMenu: state.tray,
             functions
         }}>
             {children}
