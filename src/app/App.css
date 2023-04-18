@@ -127,3 +127,44 @@
     margin: 0 20px 0 0;
     width: 70%;
 }
+
+/* Menu of the Navigation */
+
+#ModelOptionsSection {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#RouterLinks {
+    height: 40px;
+    background: #ffffff;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#RouterLinks ul {
+    padding: 0 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#RouterLinks ul li {
+    list-style: none;
+}
+
+.ButtonSection {
+    padding: 5px 20px;
+    border-radius: 15px;
+    border: none;
+    outline: 2px solid #000000;
+}

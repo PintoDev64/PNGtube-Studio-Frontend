@@ -1,13 +1,19 @@
 // Node Modules
-import { useContext } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { useContext, useState } from 'react';
+
+// Components
+import ModelSelector from './pages/modelSelector';
 
 // Contexts
 import { Global } from './context/contexts';
+import ModelSettings from './context/content/provider';
+import RouterComponent from './components/router/router';
 
 export default function Main() {
 
     const { type, wallpaper, name, color, brightness } = useContext(Global);
+
+    const [SectionState, setSectionState] = useState(0)
 
     function fixRoute(route) {
         let newData,
@@ -17,6 +23,11 @@ export default function Main() {
         };
         return newData.split('undefined/')[1];
     };
+
+    function SetSection({ id }) {
+        if (id === 1) return (<ModelSelector />)
+        if (id === 2) return (<h4>Hola</h4>)
+    }
 
     function imgURL() {
         let responceURLWallpaper = fixRoute(`${wallpaper}\\${name}.png`);
@@ -39,14 +50,22 @@ export default function Main() {
         return responceStyle
     };
 
-    console.log(imgURL());
-
     return (
-        <div id="MainSection"
-            style={imgURL()}
-        >
-            <BrowserRouter>
-            </BrowserRouter>
-        </div>
+        <>
+            <div id="MainSection" style={imgURL()} >
+            </div>
+            <div id="ModelOptionsSection">
+                <ModelSettings >
+                    <RouterComponent functionProp={setSectionState} />
+                    {
+                        SectionState !== 0 && (
+                            <aside id='AsideModelOptions'>
+                                <SetSection id={SectionState} />
+                            </aside>
+                        )
+                    }
+                </ModelSettings>
+            </div>
+        </>
     )
 }

@@ -23,7 +23,6 @@ export default function useSubmitConfig() {
                 brightness: brightness
             }
         };
-        console.log(current);
         functions.editDefault({
             color,
             wallpaper,

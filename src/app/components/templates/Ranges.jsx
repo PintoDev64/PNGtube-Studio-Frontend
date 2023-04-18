@@ -17,7 +17,6 @@ export default function Ranges({ functionProp, props }) {
                     <div className="Inputs">
                         <h3>{brightness}%</h3>
                         <input class="Range_Input" type="range" min="0" max="100" value={brightness} step="1" onChange={(event) => {
-                            console.log(brightness);
                             functionProp(event.target.value);
                             functions.brightness(event.target.value);
                         }} />

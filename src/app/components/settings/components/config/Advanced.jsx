@@ -1,13 +1,9 @@
 import { useContext, Suspense } from "react";
-// Contexts
-import { Global } from "../../../../context/contexts";
 
 // Hooks
 import useSettingsContentFunction from "../../../../hooks/componentsPropagator";
 
 export default function Advanced() {
-
-    const { hardware } = useContext(Global);
 
     const { SettingsContent } = useSettingsContentFunction();
 

@@ -36,8 +36,9 @@ export default function useSettingsContentFunction() {
     function changeBrightness(percent) {
         functions.brightness(percent);
     };
-    function submitFileBackground(percent) {
-        functions.brightness(percent);
+    function submitFileBackground(BackgroundURL) {
+        console.log(BackgroundURL[0].path, BackgroundURL[0].name);
+        window.pngtubeAPI.uploadBackground(BackgroundURL[0].path, BackgroundURL[0].name);
     };
     function TrayMenuAllow() {
         functions.trayMenu(!trayMenu);

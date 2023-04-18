@@ -11,7 +11,7 @@ import Advanced from "./components/config/Advanced";
 import { Global } from "../../context/contexts";
 
 // Hooks
-import useSubmitConfig from "../../hooks/submitConfig";
+import useSubmitConfig from "../../hooks/submitConfig.hook";
 
 // Css
 import './Settings.css'

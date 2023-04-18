@@ -1,0 +1,63 @@
+#AsideModelOptions {
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+#modelDetails {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#modelDetails ul li {
+    margin: 10px 0 0 0;
+    outline: 1px solid #000000;
+    padding: 0 25px 0 10px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+#modelDetails ul li:hover {
+    transform: scale(1.05);
+}
+
+.modelMetadata {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modelMetadata_IMG {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.modelMetadata_IMG img {
+    border-radius: 15px;
+}
+
+.modelMetadata_INFO {
+    width: 100%;
+    height: 100%;
+}
+
+.modelMetadata__Name {
+    text-align: center;
+    font-size: x-large;
+}
+
+.modelMetadata__data {
+    margin: 5px 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

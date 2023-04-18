@@ -1,6 +1,4 @@
 import { Suspense, useRef } from "react";
-// Contexts
-import { Global } from "../../context/contexts";
 
 export default function SubmitFiles({ functionProp, style, props }) {
 
@@ -20,7 +18,11 @@ export default function SubmitFiles({ functionProp, style, props }) {
                     </div>
                     <div className="Upload">
                         <button className="UploadFile" onClick={HandleUploadFile}> Subir Fondo </button>
-                        <input ref={reference} id="Upload_Input" hidden type="file" accept="image/png" />
+                        <input ref={reference} id="Upload_Input" hidden type="file" accept="image/png" onChange={(event) => {
+                            if (event.target.files.length > 0) {
+                                functionProp(event.target.files);
+                            }
+                        }}/>
                     </div>
                 </div>
             </div>

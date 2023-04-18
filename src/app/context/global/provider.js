@@ -26,8 +26,6 @@ export default function GlobalComponent({ children }) {
         tray: trayMenu
     });
 
-    console.log(defaultProps);
-
     const [state, dispatch] = useReducer(GlobalReducer, defaultProps);
 
     const functions = {
@@ -79,9 +77,6 @@ export default function GlobalComponent({ children }) {
         compararObjetos: (objeto1, objeto2) => {
             const objeto1Str = JSON.stringify(objeto1);
             const objeto2Str = JSON.stringify(objeto2);
-
-            console.log(objeto1Str, objeto2Str);
-
             return objeto1Str === objeto2Str;
         },
         editDefault: (value) => {
