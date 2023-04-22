@@ -50,6 +50,7 @@
 #ApareancePreview div,
 #ApareancePreview img {
     border-radius: 20px;
+    width: auto;
 }
 
 #SettingsNav {

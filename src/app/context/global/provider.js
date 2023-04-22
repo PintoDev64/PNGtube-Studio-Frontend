@@ -14,6 +14,7 @@ export default function GlobalComponent({ children }) {
     const files = window.pngtubeAPI.appResources();
 
     const [Settings, setSettings] = useState(false);
+    const [FullscreenMode, setFullscreenMode] = useState(false);
 
     const [defaultProps, setDefaultProps] = useState({
         color: colorBackground,
@@ -81,6 +82,9 @@ export default function GlobalComponent({ children }) {
         },
         editDefault: (value) => {
             setDefaultProps(value);
+        },
+        fullscreenMode: () => {
+            setFullscreenMode(!FullscreenMode)
         }
     }
 
@@ -97,6 +101,7 @@ export default function GlobalComponent({ children }) {
             brightness: state.brightness,
             hardware: state.hardware,
             trayMenu: state.tray,
+            FullscreenMode,
             functions
         }}>
             {children}

@@ -9,9 +9,11 @@ import { Close, Minimize, Restore } from './executes';
 
 import './Admintools.css'
 
-export default function AdminTool() {
+export default function AdminTool({ styleState }) {
 
     const { settings, functions, resources } = useContext(Global);
+
+    console.log(styleState);
 
     return (
         <header id="AdminTool">

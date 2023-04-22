@@ -8,6 +8,8 @@ import ModelSelector from './pages/modelSelector';
 import { Global } from './context/contexts';
 import ModelSettings from './context/content/provider';
 import RouterComponent from './components/router/router';
+import AudioControls from './AudioControls';
+import { fixRoute } from './controllers/fixRoute';
 
 export default function Main() {
 
@@ -15,18 +17,9 @@ export default function Main() {
 
     const [SectionState, setSectionState] = useState(0)
 
-    function fixRoute(route) {
-        let newData,
-            newVariable = route.split("\\");
-        for (let i = 0; i < newVariable.length; i++) {
-            newData += `/${newVariable[i]}`
-        };
-        return newData.split('undefined/')[1];
-    };
-
     function SetSection({ id }) {
-        if (id === 1) return (<ModelSelector />)
-        if (id === 2) return (<h4>Hola</h4>)
+        if (id === 1) return (<ModelSelector />);
+        if (id === 2) return (<h1>Hola</h1>);
     }
 
     function imgURL() {
@@ -41,7 +34,8 @@ export default function Main() {
                 backgroundImage: `url("${responceURLWallpaper}")`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center center',
-                backgroundAttachment: 'fixed'
+                backgroundAttachment: 'fixed',
+                backgroundSize: 'cover'
             }
         }
         if (parseInt(brightness) !== 100) {
@@ -57,6 +51,7 @@ export default function Main() {
             <div id="ModelOptionsSection">
                 <ModelSettings >
                     <RouterComponent functionProp={setSectionState} />
+                    <AudioControls />
                     {
                         SectionState !== 0 && (
                             <aside id='AsideModelOptions'>

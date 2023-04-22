@@ -5,6 +5,7 @@ import { Global } from "../../../../context/contexts";
 
 // Hooks
 import useSettingsContentFunction from "../../../../hooks/componentsPropagator";
+import { fixRoute } from "../../../../controllers/fixRoute";
 
 export default function Apareance() {
 
@@ -18,10 +19,18 @@ export default function Apareance() {
                 <h3>Vista Previa</h3>
                 {
                     type === 'Color'
-                        ? <div style={{ background: color, width: 500, height: 312, filter: `brightness(${brightness}%` }}></div>
-                        : <img src={`${wallpaper}\\${name}.png`} alt="Background Apareance Preview" style={{
-                            filter: `brightness(${brightness}%`
-                        }} width={500} height={280} />
+                        ? <div style={{ background: color, width: 500, height: 312, filter: `brightness(${brightness}%`, outline: '2px solid #000000' }}></div>
+                        : <div style={{
+                            width: 500,
+                            height: 312,
+                            outline: '2px solid #000000',
+                            backgroundImage: `url("${fixRoute(`${wallpaper}\\${name}.png`)}")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center center',
+                            backgroundSize: 'cover',
+                            filter: `brightness(${brightness}%)`
+                        }}>
+                        </div>
                 }
             </aside>
             <hr className="hr-titles" />

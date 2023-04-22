@@ -6,7 +6,7 @@
 
 #App {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 #MainSection {
@@ -148,6 +148,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    border-bottom: 2px solid #000000;
+    box-sizing: border-box;
 }
 
 #RouterLinks ul {
@@ -167,4 +169,63 @@
     border-radius: 15px;
     border: none;
     outline: 2px solid #000000;
+}
+
+/* Audio Controls */
+#AudioControls {
+    height: auto;
+    background: #ffffff;
+    left: 0;
+    margin: 20px;
+    position: absolute;
+    top: 40px;
+    width: 400px;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#AudioInfo {
+    width: 100%;
+    height: 100%;
+}
+
+#AudioInfo ul li.AudioLevel {
+    list-style: none;
+    height: 100%;
+    text-align: center;
+}
+
+#CanvasDataMeasurer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+#AudioReferenceLevel {
+    border-radius: 15px;
+    margin: 0 0 0 20px;
+    outline: 2px solid #000;
+}
+
+#AudioPropSeparator {
+    background: #000;
+    height: 200px;
+    margin: 0 20px;
+    width: 5px;
+}
+
+#ListVolumeLevelReference {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: auto;
+}
+
+#ListVolumeLevelReference li::marker {
+    content: "◄";
 }

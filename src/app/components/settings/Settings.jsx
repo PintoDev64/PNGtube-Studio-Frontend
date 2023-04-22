@@ -42,7 +42,7 @@ export default function Settings() {
                 <article id="SettingsRestart">
                     <div className="text">
                         <h4>Tienes cambios sin guardar</h4>
-                        <h6>los cambios se aplica al reiniciar</h6>
+                        <h6>Algunos cambios se reflejaran al reiniciar, si no guardas no se reflejaran en la proxima sesion</h6>
                     </div>
                     <button id="SaveSettingsButton" onClick={SubmitConfig}>Guardar</button>
                 </article>
