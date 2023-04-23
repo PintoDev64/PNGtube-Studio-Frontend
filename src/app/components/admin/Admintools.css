@@ -1,6 +1,5 @@
 #AdminTool {
     position: relative;
-    z-index: 10;
     display: flex;
     flex-direction: row;
     background-color: #ffffff;
@@ -33,6 +32,8 @@
     background-color: transparent;
     display: grid;
     place-items: center;
+    background: #ffffff;
+    border-radius: 10px;
     margin: 0;
     border: 0;
     padding: 0;

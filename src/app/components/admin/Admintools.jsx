@@ -9,14 +9,18 @@ import { Close, Minimize, Restore } from './executes';
 
 import './Admintools.css'
 
-export default function AdminTool({ styleState }) {
+export default function AdminTool() {
 
-    const { settings, functions, resources } = useContext(Global);
-
-    console.log(styleState);
+    const { settings, functions, resources, FullscreenMode } = useContext(Global);
 
     return (
-        <header id="AdminTool">
+        <header id="AdminTool" style={
+            {
+                visibility: FullscreenMode ? 'hidden' : 'visible',
+                height: FullscreenMode ? 0 : 45,
+                zIndex: FullscreenMode ? -1 : 10,
+            }
+        }>
             <div id="tolls">
                 <button onClick={() => {
                     functions.settings(!settings);
