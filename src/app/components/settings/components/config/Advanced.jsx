@@ -1,4 +1,4 @@
-import { useContext, Suspense } from "react";
+import { Suspense } from "react";
 
 // Hooks
 import useSettingsContentFunction from "../../../../hooks/componentsPropagator";

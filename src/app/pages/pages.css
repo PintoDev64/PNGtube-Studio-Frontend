@@ -4,6 +4,8 @@
     margin: 20px;
     padding: 20px;
     background: #ffffff;
+    z-index: 2;
+    outline: 2px solid #000000;
     box-sizing: border-box;
     border-radius: 20px;
 }
@@ -16,7 +18,8 @@
 
 #modelDetails ul li {
     margin: 10px 0 0 0;
-    outline: 1px solid #000000;
+    background: #c7c7c7;
+    cursor: pointer;
     padding: 0 25px 0 10px;
     border-radius: 15px;
     box-sizing: border-box;

@@ -8,26 +8,27 @@ import ModelSelector from './pages/modelSelector';
 import { Global } from './context/contexts';
 import ModelSettings from './context/content/provider';
 import RouterComponent from './components/router/router';
-import AudioControls from './AudioControls';
+import AudioControls from './service/Audio/AudioControls';
 import { fixRoute } from './controllers/fixRoute';
+import ModelViewer from './components/model/modelViewer';
 
 export default function Main() {
 
-    const { type, wallpaper, name, color, brightness } = useContext(Global);
+    const { state } = useContext(Global);
 
-    const [SectionState, setSectionState] = useState(0)
+    const [SectionState, setSectionState] = useState(0);
 
     function SetSection({ id }) {
         if (id === 1) return (<ModelSelector />);
         if (id === 2) return (<h1>Hola</h1>);
-    }
+    };
 
     function imgURL() {
-        let responceURLWallpaper = fixRoute(`${wallpaper}\\${name}.png`);
+        let responceURLWallpaper = fixRoute(`${state.wallpaper}\\${state.name}.png`);
         let responceStyle;
-        if (type === 'Color') {
+        if (state.type === 'Color') {
             responceStyle = {
-                background: color
+                background: state.color
             }
         } else {
             responceStyle = {
@@ -37,11 +38,11 @@ export default function Main() {
                 backgroundAttachment: 'fixed',
                 backgroundSize: 'cover'
             }
-        }
-        if (parseInt(brightness) !== 100) {
-            responceStyle['filter'] = `brightness(${brightness}%)`
-        }
-        return responceStyle
+        };
+        if (parseInt(state.brightness) !== 100) {
+            responceStyle['filter'] = `brightness(${state.brightness}%)`
+        };
+        return responceStyle;
     };
 
     return (
@@ -59,6 +60,7 @@ export default function Main() {
                             </aside>
                         )
                     }
+                    <ModelViewer />
                 </ModelSettings>
             </div>
         </>

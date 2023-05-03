@@ -20,7 +20,7 @@ export default function Settings() {
 
     const { SubmitConfig } = useSubmitConfig();
 
-    const { settings, resources, functions, state, defaultProps } = useContext(Global);
+    const { settings, functions, state, defaultProps } = useContext(Global);
 
     const [Section, setSection] = useState(1);
 
@@ -57,7 +57,7 @@ export default function Settings() {
                     <article id="SettingsSection">
                         <aside id="SettingsNav">
                             <h3>Configuracion</h3>
-                            <img src={resources['Default.png']} alt="Aplication Logo" width={150} />
+                            <img src={state.resources['Default.png']} alt="Aplication Logo" width={150} />
                             <hr className="hr-titles" />
                             <h3>Aplicacion</h3>
                             <ul>

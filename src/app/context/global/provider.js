@@ -27,53 +27,27 @@ export default function GlobalComponent({ children }) {
         tray: trayMenu
     });
 
+    const STATE_ACCESS = Object.freeze({
+        color: 'color',
+        wallpaper: 'wallpaper',
+        type: 'type',
+        name: 'name',
+        brightness: 'brightness',
+        hardware: 'hardware',
+        tray: 'tray'
+    })
+
     const [state, dispatch] = useReducer(GlobalReducer, defaultProps);
 
     const functions = {
-        color: (hex) => {
+        ChangeStateGlobal: ({ action, value }) => {
             dispatch({
-                action: 'color',
-                value: hex
-            })
-        },
-        wallpaper: (filePath) => {
-            dispatch({
-                action: 'wallpaper',
-                value: filePath
-            })
-        },
-        type: (typeBack) => {
-            dispatch({
-                action: 'type',
-                value: typeBack
-            })
-        },
-        hardwareAcceleration: (stateOF) => {
-            dispatch({
-                action: 'hardwareAcceleration',
-                value: stateOF
-            })
-        },
-        brightness: (value) => {
-            dispatch({
-                action: 'brightness',
+                action: action,
                 value: value
             })
         },
-        settings: (open) => {
+        settings: () => {
             setSettings(!Settings)
-        },
-        trayMenu: (value) => {
-            dispatch({
-                action: 'trayMenu',
-                value: value
-            })
-        },
-        wallpaperName: (value) => {
-            dispatch({
-                action: 'name',
-                value: value
-            })
         },
         compararObjetos: (objeto1, objeto2) => {
             const objeto1Str = JSON.stringify(objeto1);
@@ -92,15 +66,8 @@ export default function GlobalComponent({ children }) {
         <Global.Provider value={{
             state,
             defaultProps,
-            color: state.color,
-            wallpaper: state.wallpaper,
-            type: state.type,
-            name: state.name,
+            STATE_ACCESS,
             settings: Settings,
-            resources: state.resources,
-            brightness: state.brightness,
-            hardware: state.hardware,
-            trayMenu: state.tray,
             FullscreenMode,
             functions
         }}>

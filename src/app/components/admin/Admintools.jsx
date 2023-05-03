@@ -11,7 +11,7 @@ import './Admintools.css'
 
 export default function AdminTool() {
 
-    const { settings, functions, resources, FullscreenMode } = useContext(Global);
+    const { settings, functions, state, FullscreenMode } = useContext(Global);
 
     return (
         <header id="AdminTool" style={
@@ -25,7 +25,7 @@ export default function AdminTool() {
                 <button onClick={() => {
                     functions.settings(!settings);
                 }} className='tolltip_bar_buttons' id='settings'>
-                    <img src={resources['Settings-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
+                    <img src={state.resources['Settings-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
                 </button>
             </div>
             <header id='topWindowTollbar'>
@@ -35,17 +35,17 @@ export default function AdminTool() {
                 <button onClick={() => {
                     Minimize();
                 }} className='tolltip_bar_buttons' id='minimize'>
-                    <img src={resources['_-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
+                    <img src={state.resources['_-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
                 </button>
                 <button onClick={() => {
                     Restore();
                 }} className='tolltip_bar_buttons' id='window'>
-                    <img src={resources['H-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
+                    <img src={state.resources['H-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
                 </button>
                 <button onClick={() => {
                     Close();
                 }} className='tolltip_bar_buttons' id='close'>
-                    <img src={resources['X-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
+                    <img src={state.resources['X-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
                 </button>
             </div>
         </header>

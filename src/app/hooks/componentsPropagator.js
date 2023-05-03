@@ -15,33 +15,59 @@ const { wallpapers } = window.pngtubeAPI.getWallpapers();
 
 export default function useSettingsContentFunction() {
 
-    const { type, functions, hardware, trayMenu } = useContext(Global);
+    const { functions, state, STATE_ACCESS } = useContext(Global);
+
+    const typeComponents = Object.freeze({
+        ROW: false,
+        COLUMN: true
+    })
 
     // Advanced
     function hardwareAccelerationAllow() {
-        functions.hardwareAcceleration(!hardware);
+        functions.ChangeStateGlobal({
+            action: STATE_ACCESS.hardware,
+            value: !state.hardware
+        });
     };
     // Apareance
     function typeApareance() {
-        type === 'Color'
-            ? functions.type('Image')
-            : functions.type('Color')
+        state.type === 'Color'
+            ? functions.ChangeStateGlobal({
+                action: STATE_ACCESS.type,
+                value: 'Image'
+            })
+            : functions.ChangeStateGlobal({
+                action: STATE_ACCESS.type,
+                value: 'Color'
+            })
     };
     function backgroundApareance(nameBackground) {
-        functions.wallpaperName(nameBackground);
+        functions.ChangeStateGlobal({
+            action: STATE_ACCESS.name,
+            value: nameBackground
+        });
     };
     function colorApareance(hex) {
-        functions.color(hex);
+        functions.ChangeStateGlobal({
+            action: STATE_ACCESS.color,
+            value: hex
+        });
     };
     function changeBrightness(percent) {
-        functions.brightness(percent);
+        functions.ChangeStateGlobal({
+            action: STATE_ACCESS.brightness,
+            value: percent
+        });
     };
     function submitFileBackground(BackgroundURL) {
         console.log(BackgroundURL[0].path, BackgroundURL[0].name);
         window.pngtubeAPI.uploadBackground(BackgroundURL[0].path, BackgroundURL[0].name);
     };
     function TrayMenuAllow() {
-        functions.trayMenu(!trayMenu);
+        functions.ChangeStateGlobal({
+            action: STATE_ACCESS.tray,
+            value: !state.tray
+        });
     }
 
     const SettingsContent = {
@@ -50,8 +76,9 @@ export default function useSettingsContentFunction() {
                 Id: 1,
                 Component: Types,
                 functionsProp: typeApareance,
-                condition: type === 'Color' ? 'flex-start' : 'flex-end',
+                condition: state.type === 'Color' ? 'flex-start' : 'flex-end',
                 Data: {
+                    type: typeComponents.ROW,
                     text: 'Estilo/Tipo de fondo',
                     definition: 'Determinara entre usar una imagen o color solido de fondo',
                     selects: {
@@ -65,6 +92,7 @@ export default function useSettingsContentFunction() {
                 Component: Selectors,
                 functionsProp: backgroundApareance,
                 Data: {
+                    type: typeComponents.ROW,
                     text: 'Fondo',
                     definition: 'Define cual imagen usar como fondo',
                     options: wallpapers,
@@ -75,6 +103,7 @@ export default function useSettingsContentFunction() {
                 Component: Inputs,
                 functionsProp: colorApareance,
                 Data: {
+                    type: typeComponents.ROW,
                     text: 'Color',
                     definition: 'Define que color de fondo usaras',
                 }
@@ -84,8 +113,13 @@ export default function useSettingsContentFunction() {
                 Component: Ranges,
                 functionsProp: changeBrightness,
                 Data: {
+                    type: typeComponents.ROW,
+                    min: 1,
+                    max: 100,
+                    steps: 1,
                     text: 'Brightness',
                     definition: 'Define el brillo del fondo',
+                    valueKey: state.brightness
                 }
             },
             {
@@ -93,6 +127,7 @@ export default function useSettingsContentFunction() {
                 Component: SubmitFiles,
                 functionsProp: submitFileBackground,
                 Data: {
+                    type: typeComponents.ROW,
                     text: 'Subir Fondos ( PNG )',
                     definition: 'Sube tu fondo personalizado. Debe reiniciar',
                 }
@@ -103,8 +138,9 @@ export default function useSettingsContentFunction() {
                 Id: 1,
                 Component: Types,
                 functionsProp: hardwareAccelerationAllow,
-                condition: !hardware ? 'flex-start' : 'flex-end',
+                condition: !state.hardware ? 'flex-start' : 'flex-end',
                 Data: {
+                    type: typeComponents.ROW,
                     text: 'Aceleracion por hardware',
                     definition: 'activa o desactiva la renderizacion por hardware',
                     selects: {
@@ -117,8 +153,9 @@ export default function useSettingsContentFunction() {
                 Id: 2,
                 Component: Types,
                 functionsProp: TrayMenuAllow,
-                condition: !trayMenu ? 'flex-start' : 'flex-end',
+                condition: !state.tray ? 'flex-start' : 'flex-end',
                 Data: {
+                    type: typeComponents.ROW,
                     text: 'Minimizado',
                     definition: 'Muestra el icono de PNGtube en la bandeja',
                     selects: {

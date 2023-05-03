@@ -29,9 +29,7 @@ export default function ModelSettings({ children }) {
 
     return (
         <Avatars.Provider value={{
-            state,
-            select: state.select,
-            models: state.models,
+            stateModels: state,
             functions
         }}>
             {children}

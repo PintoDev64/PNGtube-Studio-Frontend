@@ -1,5 +1,5 @@
 // Node Modules
-import { useContext } from "react"
+import { Suspense, useContext } from "react"
 
 // Contexts
 import { Avatars } from "../context/contexts"
@@ -9,30 +9,34 @@ import './pages.css'
 
 export default function ModelSelector() {
 
-    const { state, select, models, functions } = useContext(Avatars);
+    const { stateModels, functions } = useContext(Avatars);
+
+    function selectModel(id) {
+        functions.changeModelSelected(id);
+    };
 
     return (
-        <>
+        <Suspense fallback>
             <div id="modelDetails">
                 <h3>Avatares</h3>
                 <hr className="hr-titles" />
                 <ul>
                     {
-                        models.map(avatar => {
+                        stateModels.models.map(({ modelId, modelImage, modelName, modelOwner, modelDate }) => {
                             return (
-                                <li key={avatar.modelId}>
+                                <li key={modelId} onClick={() => selectModel(modelName)}>
                                     <div className="modelMetadata">
                                         <div className="modelMetadata_IMG">
-                                            <img src={avatar.modelImage} width={100} height={100} />
+                                            <img src={modelImage} width={100} height={100} />
                                         </div>
                                         <div className="modelMetadata_INFO">
                                             <div className="modelMetadata__Name">
-                                                <h4>{avatar.modelName}</h4>
+                                                <h4>{modelName}</h4>
                                             </div>
                                             <hr className="hr-titles" />
                                             <div className="modelMetadata__data">
-                                                <h5>{avatar.modelOwner}</h5>
-                                                <h5>{new Date(avatar.modelDate).getFullYear()} / {new Date(avatar.modelDate).getMonth()}</h5>
+                                                <h5>{modelOwner}</h5>
+                                                <h5>{new Date(modelDate).getFullYear()} / {new Date(modelDate).getMonth()}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -42,6 +46,6 @@ export default function ModelSelector() {
                     }
                 </ul>
             </div>
-        </>
+        </Suspense>
     )
 }
