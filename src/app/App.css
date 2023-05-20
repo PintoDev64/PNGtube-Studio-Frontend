@@ -49,6 +49,11 @@
     color: #ffffff;
 }
 
+#ActualModel {
+    position: absolute;
+    transition: 0s;
+}
+
 #ButtonTools {
     bottom: 10px;
     left: 10px;
