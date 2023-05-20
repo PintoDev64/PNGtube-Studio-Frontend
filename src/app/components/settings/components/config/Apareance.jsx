@@ -9,7 +9,7 @@ import { fixRoute } from "../../../../controllers/fixRoute";
 
 export default function Apareance() {
 
-    const { state } = useContext(Global);
+    const { GlobalState } = useContext(Global);
 
     const { SettingsContent } = useSettingsContentFunction();
 
@@ -18,17 +18,17 @@ export default function Apareance() {
             <aside id="ApareancePreview">
                 <h3>Vista Previa</h3>
                 {
-                    state.type === 'Color'
-                        ? <div style={{ background: state.color, width: 500, height: 312, filter: `brightness(${state.brightness}%`, outline: '2px solid #000000' }}></div>
+                    GlobalState.type === 'Color'
+                        ? <div style={{ background: GlobalState.color, width: 500, height: 312, filter: `brightness(${GlobalState.brightness}%`, outline: '2px solid #000000' }}></div>
                         : <div style={{
                             width: 500,
                             height: 312,
                             outline: '2px solid #000000',
-                            backgroundImage: `url("${fixRoute(`${state.wallpaper}\\${state.name}.png`)}")`,
+                            backgroundImage: `url("${fixRoute(`${GlobalState.wallpaper}\\${GlobalState.name}.png`)}")`,
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'center center',
                             backgroundSize: 'cover',
-                            filter: `brightness(${state.brightness}%)`
+                            filter: `brightness(${GlobalState.brightness}%)`
                         }}>
                         </div>
                 }

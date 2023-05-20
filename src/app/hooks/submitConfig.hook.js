@@ -7,31 +7,31 @@ export default function useSubmitConfig() {
 
     const currentConfigFile = window.pngtubeAPI.getAllConfig();
 
-    const { state, functions } = useContext(Global);
+    const { GlobalState, functions } = useContext(Global);
 
     function SubmitConfig() {
         let current = {
             ...currentConfigFile,
             appConfig: {
-                hardwareAcceleration: state.hardware,
-                trayMenu: state.tray
+                hardwareAcceleration: GlobalState.hardware,
+                trayMenu: GlobalState.tray
             },
             appBackground: {
-                type: state.type,
-                colorBackground: state.color,
-                wallpaper: state.name,
-                brightness: state.brightness
+                type: GlobalState.type,
+                colorBackground: GlobalState.color,
+                wallpaper: GlobalState.name,
+                brightness: GlobalState.brightness
             }
         };
         functions.editDefault({
-            color: state.color,
-            wallpaper: state.wallpaper,
-            type: state.type,
-            name: state.name,
-            resources: state.resources,
-            brightness: state.brightness,
-            hardware: state.hardware,
-            tray: state.tray
+            color: GlobalState.color,
+            wallpaper: GlobalState.wallpaper,
+            type: GlobalState.type,
+            name: GlobalState.name,
+            resources: GlobalState.resources,
+            brightness: GlobalState.brightness,
+            hardware: GlobalState.hardware,
+            tray: GlobalState.tray
         })
         window.pngtubeAPI.setConfig(current)
     }

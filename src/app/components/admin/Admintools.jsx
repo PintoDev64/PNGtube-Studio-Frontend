@@ -11,12 +11,12 @@ import './Admintools.css'
 
 export default function AdminTool() {
 
-    const { settings, functions, state, FullscreenMode } = useContext(Global);
+    const { settings, functions, GlobalState, FullscreenMode } = useContext(Global);
 
     return (
         <header id="AdminTool" style={
             {
-                visibility: FullscreenMode ? 'hidden' : 'visible',
+                display: FullscreenMode ? 'none' : 'flex',
                 height: FullscreenMode ? 0 : 45,
                 zIndex: FullscreenMode ? -1 : 10,
             }
@@ -25,7 +25,7 @@ export default function AdminTool() {
                 <button onClick={() => {
                     functions.settings(!settings);
                 }} className='tolltip_bar_buttons' id='settings'>
-                    <img src={state.resources['Settings-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
+                    <img src={GlobalState.resources['Settings-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
                 </button>
             </div>
             <header id='topWindowTollbar'>
@@ -35,17 +35,17 @@ export default function AdminTool() {
                 <button onClick={() => {
                     Minimize();
                 }} className='tolltip_bar_buttons' id='minimize'>
-                    <img src={state.resources['_-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
+                    <img src={GlobalState.resources['_-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
                 </button>
                 <button onClick={() => {
                     Restore();
                 }} className='tolltip_bar_buttons' id='window'>
-                    <img src={state.resources['H-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
+                    <img src={GlobalState.resources['H-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
                 </button>
                 <button onClick={() => {
                     Close();
                 }} className='tolltip_bar_buttons' id='close'>
-                    <img src={state.resources['X-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
+                    <img src={GlobalState.resources['X-icon.png']} alt="Close-Window-Buttom" width="18" height="18" />
                 </button>
             </div>
         </header>

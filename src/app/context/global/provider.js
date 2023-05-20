@@ -64,7 +64,7 @@ export default function GlobalComponent({ children }) {
 
     return (
         <Global.Provider value={{
-            state,
+            GlobalState: state,
             defaultProps,
             STATE_ACCESS,
             settings: Settings,

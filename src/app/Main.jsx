@@ -2,11 +2,10 @@
 import { useContext, useState } from 'react';
 
 // Components
-import ModelSelector from './pages/modelSelector';
+import ModelSelector from './pages/ModelSelector';
 
 // Contexts
 import { Global } from './context/contexts';
-import ModelSettings from './context/content/provider';
 import RouterComponent from './components/router/router';
 import AudioControls from './service/Audio/AudioControls';
 import { fixRoute } from './controllers/fixRoute';
@@ -14,21 +13,20 @@ import ModelViewer from './components/model/modelViewer';
 
 export default function Main() {
 
-    const { state } = useContext(Global);
+    const { GlobalState } = useContext(Global);
 
     const [SectionState, setSectionState] = useState(0);
 
     function SetSection({ id }) {
         if (id === 1) return (<ModelSelector />);
-        if (id === 2) return (<h1>Hola</h1>);
     };
 
     function imgURL() {
-        let responceURLWallpaper = fixRoute(`${state.wallpaper}\\${state.name}.png`);
+        let responceURLWallpaper = fixRoute(`${GlobalState.wallpaper}\\${GlobalState.name}.png`);
         let responceStyle;
-        if (state.type === 'Color') {
+        if (GlobalState.type === 'Color') {
             responceStyle = {
-                background: state.color
+                background: GlobalState.color
             }
         } else {
             responceStyle = {
@@ -39,8 +37,8 @@ export default function Main() {
                 backgroundSize: 'cover'
             }
         };
-        if (parseInt(state.brightness) !== 100) {
-            responceStyle['filter'] = `brightness(${state.brightness}%)`
+        if (parseInt(GlobalState.brightness) !== 100) {
+            responceStyle['filter'] = `brightness(${GlobalState.brightness}%)`
         };
         return responceStyle;
     };
@@ -50,18 +48,16 @@ export default function Main() {
             <div id="MainSection" style={imgURL()} >
             </div>
             <div id="ModelOptionsSection">
-                <ModelSettings >
-                    <RouterComponent functionProp={setSectionState} />
-                    <AudioControls />
-                    {
-                        SectionState !== 0 && (
-                            <aside id='AsideModelOptions'>
-                                <SetSection id={SectionState} />
-                            </aside>
-                        )
-                    }
-                    <ModelViewer />
-                </ModelSettings>
+                <RouterComponent functionProp={setSectionState} />
+                <AudioControls />
+                {
+                    SectionState !== 0 && (
+                        <aside id='AsideModelOptions'>
+                            <SetSection id={SectionState} />
+                        </aside>
+                    )
+                }
+                <ModelViewer />
             </div>
         </>
     )

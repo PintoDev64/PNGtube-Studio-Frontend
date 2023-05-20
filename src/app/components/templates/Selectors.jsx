@@ -5,7 +5,7 @@ import { Global } from "../../context/contexts";
 
 export default function Selectors({ functionProp, style, props }) {
 
-    const { state } = useContext(Global);
+    const { GlobalState } = useContext(Global);
 
     return (
         <Suspense fallback={<h3>Cargando...</h3>}>
@@ -19,7 +19,7 @@ export default function Selectors({ functionProp, style, props }) {
                         <select className="Selector_input" onChange={event => functionProp(event.target.value)}>
                             {
                                 props.options.map(wallpaper => {
-                                    return state.name === wallpaper
+                                    return GlobalState.name === wallpaper
                                         ? <option selected value={wallpaper}>{wallpaper}</option>
                                         : <option value={wallpaper}>{wallpaper}</option>
                                 })

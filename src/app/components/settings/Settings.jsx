@@ -20,7 +20,7 @@ export default function Settings() {
 
     const { SubmitConfig } = useSubmitConfig();
 
-    const { settings, functions, state, defaultProps } = useContext(Global);
+    const { settings, functions, GlobalState, defaultProps } = useContext(Global);
 
     const [Section, setSection] = useState(1);
 
@@ -36,7 +36,7 @@ export default function Settings() {
 
     /// Pseudo-Compoent
     function SaveSettings() {
-        let settingsState = functions.compararObjetos(state, defaultProps);
+        let settingsState = functions.compararObjetos(GlobalState, defaultProps);
         if (settingsState === false) {
             return (
                 <article id="SettingsRestart">
@@ -57,7 +57,7 @@ export default function Settings() {
                     <article id="SettingsSection">
                         <aside id="SettingsNav">
                             <h3>Configuracion</h3>
-                            <img src={state.resources['Default.png']} alt="Aplication Logo" width={150} />
+                            <img src={GlobalState.resources['Default.png']} alt="Aplication Logo" width={150} />
                             <hr className="hr-titles" />
                             <h3>Aplicacion</h3>
                             <ul>

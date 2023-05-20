@@ -9,7 +9,7 @@ import { AudioController } from "../context/contexts";
 
 export default function useAudioContext() {
 
-    const { state, STATE_ACCESS, functions } = useContext(AudioController);
+    const { AudioState, STATE_ACCESS, functions } = useContext(AudioController);
 
     const typeComponents = Object.freeze({
         ROW: false,
@@ -19,7 +19,7 @@ export default function useAudioContext() {
     function capturerStateChange() {
         functions.ChangeState({
             action: STATE_ACCESS.capturerState,
-            value: !state.capturerState
+            value: !AudioState.capturerState
         })
     };
     function capturerVolumeEvent(value) {
@@ -35,7 +35,7 @@ export default function useAudioContext() {
                 Id: 1,
                 Component: Types,
                 functionsProp: capturerStateChange,
-                condition: !state.capturerState ? 'flex-start' : 'flex-end',
+                condition: !AudioState.capturerState ? 'flex-start' : 'flex-end',
                 Data: {
                     type: typeComponents.COLUMN,
                     text: '¿Capturar audio?',
@@ -57,7 +57,7 @@ export default function useAudioContext() {
                     steps: 1,
                     text: 'Nivel de captura',
                     definition: 'Envia datos al modelo al nivel especificado',
-                    valueKey: state.sensibility
+                    valueKey: AudioState.sensibility
                 }
             }
         ]

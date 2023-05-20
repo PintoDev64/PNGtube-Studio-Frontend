@@ -9,18 +9,18 @@ import { Avatars } from "../../context/contexts";
 
 // Functions
 import getModelMap from "./getModels";
+import { fixRoute } from "../../controllers/fixRoute";
 
 export default function ModelViewer() {
 
-	const { stateModels, functions } = useContext(Avatars);
+	const { stateModels } = useContext(Avatars);
 
 	const [Speak, setSpeak] = useState(false);
-	const [ModelSelected, setModelSelected] = useState({})
 
 	const { volume } = useMicrophone();
-	const { state } = useContext(AudioController);
-	const { select, models } = stateModels;
-	const { sensibility, capturerState } = state;
+	const { AudioState } = useContext(AudioController);
+	const { select, router } = stateModels;
+	const { sensibility, capturerState } = AudioState;
 
 	useEffect(() => {
 		if (volume >= sensibility && capturerState ) {
@@ -29,24 +29,15 @@ export default function ModelViewer() {
 		}
 		setSpeak(false)
 	}, [volume])
-
-	useMemo(() => {
-		let res = getModelMap(models, select);
-		setModelSelected(res);
-	}, [select])
 	
 	return (
 		<div id="ModelViewer">
-			{/* <div style={{
-				width: 200,
-				height: Speak ? 400 : 200,
-				background: '#000000'
-			}}/> */}
 			<div id="ModelElements">
 				<div id="ModelSprites">
-					<img src={ModelSelected.modelImage} alt="ModelSpritesManager" width={500} height={500} style={{
+					<img src={fixRoute(`${router}\\${select}\\${select}.png`)} alt="ModelSpritesManager" width={500} height={500} style={{
 						position: 'relative',
-						bottom: Speak ? 400 : 200
+						bottom: Speak ? 250 : 200,
+						animation: Speak ? "0.8s ease 0s infinite normal none running shake" : "none"
 					}} />
 				</div>
 			</div>

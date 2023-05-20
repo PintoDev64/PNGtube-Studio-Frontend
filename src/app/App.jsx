@@ -7,6 +7,7 @@ import Tolls from './components/controller/Tolls';
 // Contexts
 import GlobalComponent from './context/global/provider';
 import AudioComponent from './context/audio/provider';
+import ModelSettings from './context/content/provider';
 
 // Css
 import './App.css';
@@ -15,14 +16,16 @@ function App() {
 
   return (
     <GlobalComponent>
-      <main id="App">
-        <AudioComponent>
-          <AdminTool />
-          <Settings />
-          <Main />
-          <Tolls />
-        </AudioComponent>
-      </main>
+      <ModelSettings >
+        <main id="App">
+          <AudioComponent>
+            <AdminTool />
+            <Settings />
+            <Main />
+            <Tolls />
+          </AudioComponent>
+        </main>
+      </ModelSettings>
     </GlobalComponent>
   );
 }

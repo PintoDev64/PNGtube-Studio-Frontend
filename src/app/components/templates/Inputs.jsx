@@ -4,7 +4,7 @@ import { Global } from "../../context/contexts";
 
 export default function Inputs({ functionProp, props }) {
 
-    const { state } = useContext(Global);
+    const { GlobalState } = useContext(Global);
 
     return (
         <Suspense fallback={<h3>Cargando...</h3>}>
@@ -15,7 +15,7 @@ export default function Inputs({ functionProp, props }) {
                         <h6 className="DefinitionSelector">{props.definition}</h6>
                     </div>
                     <div className={`Inputs_${props.type ? 'COLUMN' : 'ROW' }`}>
-                        <input className="Color_Input" type="color" value={state.color} onChange={(event) => {
+                        <input className="Color_Input" type="color" value={GlobalState.color} onChange={(event) => {
                             functionProp(event.target.value);
                         }}/>
                     </div>

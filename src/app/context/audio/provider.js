@@ -34,7 +34,7 @@ export default function AudioComponent({ children }) {
 
     return (
         <AudioController.Provider value={{
-            state,
+            AudioState: state,
             STATE_ACCESS,
             functions
         }}>

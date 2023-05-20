@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext, Suspense } from "react";
 
 // Contexts
-import { AudioController } from "../../context/contexts";
+import { AudioController, Global } from "../../context/contexts";
 
 // Hooks
 import useAudioContext from "../../hooks/AudioControlsPropagator";
@@ -9,13 +9,15 @@ import useMicrophone from "../../hooks/AudioData";
 
 export default function AudioControls() {
 
+    const { GlobalState } = useContext(Global);
+
     const { AudioControllerPropagator } = useAudioContext();
 
     const { volume, AvarageLevels } = useMicrophone();
 
-    const { state } = useContext(AudioController);
+    const { AudioState } = useContext(AudioController);
 
-    const { volumeState, sensibility, capturerState } = state;
+    const { volumeState, sensibility, capturerState } = AudioState;
 
     const [Open, setOpen] = useState(false);
     const canvasLevelRef = useRef(null);
@@ -23,8 +25,8 @@ export default function AudioControls() {
 
     useEffect(() => {
         const eventAudio = new CustomEvent('AudioController', { detail: { volume, sensibility } });
-        divEventRef.current.style.height = `${state.sensibility * 2}px`;
-        if (state.capturerState) {
+        divEventRef.current.style.height = `${AudioState.sensibility * 2}px`;
+        if (AudioState.capturerState) {
             window.dispatchEvent(eventAudio);
             let canvasLevel = canvasLevelRef.current;
             let ctxLevel = canvasLevel.getContext("2d");
@@ -45,7 +47,12 @@ export default function AudioControls() {
 
     return (
         <Suspense fallback={<h3>Cargando...</h3>}>
-            <div id="AudioControls">
+            <div id="AudioControls" style={{
+                left: Open ? 0 : '-425px'
+            }}>
+                <button onClick={() => setOpen(!Open)} id="Op-CL_AudioControls">
+                    <img src={Open ? GlobalState.resources['AudioControlsRow_Left.png'] : GlobalState.resources['AudioControlsRow_Right.png']} alt="Open/Close AudioControls" />
+                </button>
                 <div id="AudioInfo">
                     <h3>Opciones de Audio</h3>
                     <hr className="hr-titles" />

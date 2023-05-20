@@ -9,15 +9,17 @@
 }
 
 #SettingsSection {
-    overflow: hidden;
-    background: #ffffff;
-    border: 2px solid #000000;
-    width: 1000px;
-    height: 500px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 20px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    box-sizing: border-box;
-    border-radius: 20px;
+    height: inherit;
+    min-height: 50vh;
+    max-height: 70vh;
+    overflow: hidden;
+    width: 1000px;
 }
 
 #SettingsRestart {

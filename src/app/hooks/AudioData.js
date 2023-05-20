@@ -4,7 +4,7 @@ import { AudioController } from "../context/contexts";
 
 export default function useMicrophone() {
 
-    const { state, functions, STATE_ACCESS } = useContext(AudioController);
+    const { AudioState, functions, STATE_ACCESS } = useContext(AudioController);
     const [volume, setVolume] = useState(0);
 
     const AvarageLevels = Object.freeze({
@@ -14,7 +14,7 @@ export default function useMicrophone() {
     })
 
     useEffect(() => {
-        if (state.capturerState) {
+        if (AudioState.capturerState) {
             let intervalTime;
             navigator.mediaDevices
                 .getUserMedia({ audio: { autoGainControl: false } })

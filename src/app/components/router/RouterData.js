@@ -6,10 +6,6 @@ const RoutesContent = [
     {
         id: 1,
         name: 'Modelos',
-    },
-    {
-        id: 2,
-        name: 'Audio',
     }
 ]
 

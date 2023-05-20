@@ -15,7 +15,7 @@ const { wallpapers } = window.pngtubeAPI.getWallpapers();
 
 export default function useSettingsContentFunction() {
 
-    const { functions, state, STATE_ACCESS } = useContext(Global);
+    const { functions, GlobalState, STATE_ACCESS } = useContext(Global);
 
     const typeComponents = Object.freeze({
         ROW: false,
@@ -26,12 +26,18 @@ export default function useSettingsContentFunction() {
     function hardwareAccelerationAllow() {
         functions.ChangeStateGlobal({
             action: STATE_ACCESS.hardware,
-            value: !state.hardware
+            value: !GlobalState.hardware
+        });
+    };
+    function TrayMenuAllow() {
+        functions.ChangeStateGlobal({
+            action: STATE_ACCESS.tray,
+            value: !GlobalState.tray
         });
     };
     // Apareance
     function typeApareance() {
-        state.type === 'Color'
+        GlobalState.type === 'Color'
             ? functions.ChangeStateGlobal({
                 action: STATE_ACCESS.type,
                 value: 'Image'
@@ -63,12 +69,6 @@ export default function useSettingsContentFunction() {
         console.log(BackgroundURL[0].path, BackgroundURL[0].name);
         window.pngtubeAPI.uploadBackground(BackgroundURL[0].path, BackgroundURL[0].name);
     };
-    function TrayMenuAllow() {
-        functions.ChangeStateGlobal({
-            action: STATE_ACCESS.tray,
-            value: !state.tray
-        });
-    }
 
     const SettingsContent = {
         Apareance: [
@@ -76,7 +76,7 @@ export default function useSettingsContentFunction() {
                 Id: 1,
                 Component: Types,
                 functionsProp: typeApareance,
-                condition: state.type === 'Color' ? 'flex-start' : 'flex-end',
+                condition: GlobalState.type === 'Color' ? 'flex-start' : 'flex-end',
                 Data: {
                     type: typeComponents.ROW,
                     text: 'Estilo/Tipo de fondo',
@@ -119,7 +119,7 @@ export default function useSettingsContentFunction() {
                     steps: 1,
                     text: 'Brightness',
                     definition: 'Define el brillo del fondo',
-                    valueKey: state.brightness
+                    valueKey: GlobalState.brightness
                 }
             },
             {
@@ -138,7 +138,7 @@ export default function useSettingsContentFunction() {
                 Id: 1,
                 Component: Types,
                 functionsProp: hardwareAccelerationAllow,
-                condition: !state.hardware ? 'flex-start' : 'flex-end',
+                condition: !GlobalState.hardware ? 'flex-start' : 'flex-end',
                 Data: {
                     type: typeComponents.ROW,
                     text: 'Aceleracion por hardware',
@@ -153,7 +153,7 @@ export default function useSettingsContentFunction() {
                 Id: 2,
                 Component: Types,
                 functionsProp: TrayMenuAllow,
-                condition: !state.tray ? 'flex-start' : 'flex-end',
+                condition: !GlobalState.tray ? 'flex-start' : 'flex-end',
                 Data: {
                     type: typeComponents.ROW,
                     text: 'Minimizado',

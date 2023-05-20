@@ -1,5 +1,5 @@
 // Node Modules
-import { Suspense, useContext } from "react"
+import { Suspense, useCallback, useContext, useEffect, useMemo } from "react"
 
 // Contexts
 import { Avatars } from "../context/contexts"
@@ -9,10 +9,13 @@ import './pages.css'
 
 export default function ModelSelector() {
 
-    const { stateModels, functions } = useContext(Avatars);
+    const { stateModels, functionsModels, MODEL_ACCESS } = useContext(Avatars);
+
+    console.log(stateModels);
 
     function selectModel(id) {
-        functions.changeModelSelected(id);
+        functionsModels.changeModelSelected(MODEL_ACCESS.select, id);
+        functionsModels.changeModelData(MODEL_ACCESS.data, id);
     };
 
     return (
