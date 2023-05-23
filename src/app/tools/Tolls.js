@@ -7,6 +7,11 @@ function fixRoute(route) {
     return newData.split('undefined/')[1];
 };
 
+function getModelFind(models, select) {
+    return models.find(({ modelName }) => modelName === select)
+}
+
 export {
-    fixRoute
+    fixRoute,
+    getModelFind
 }

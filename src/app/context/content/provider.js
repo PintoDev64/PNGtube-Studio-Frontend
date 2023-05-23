@@ -6,12 +6,15 @@ import { Avatars } from "../contexts";
 
 // Reducer
 import ModelReducer from "./reducer";
+import { ModelData } from "../../service/Services";
+import { getModelFind } from "../../tools/Tolls";
 
 export default function ModelSettings({ children }) {
 
-    const { userModel, Models, routeModels } = window.pngtubeAPI.getModels();
+    const { data } = ModelData();
+    const { userModel, Models, routeModels } = data;
 
-    const responce = Models.find(({ modelName }) => modelName === userModel);
+    const responce = getModelFind(Models, userModel)
 
     const [ModelsState, setModelsState] = useState({
         select: userModel,
@@ -37,12 +40,17 @@ export default function ModelSettings({ children }) {
             });
         },
         changeModelData: (action, name) => {
-            const responce = Models.find(({ modelName }) => modelName === name);
-            console.log(responce.modelData);
+            const responce = getModelFind(Models, name);
             dispatch({
                 action,
                 value: responce.modelData
             });
+        },
+        getDataModel: () => {
+            console.log(state)
+        },
+        setAll: (data) => {
+            setModelsState(data)
         }
     }
 

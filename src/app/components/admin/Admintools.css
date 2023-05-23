@@ -8,10 +8,12 @@
 
 #topWindowTollbar {
     -webkit-app-region: drag;
-    width: 100%;
-    height: 45px;
     display: grid;
+    height: 45px;
     place-items: center;
+    border: none;
+    width: 100%;
+    border-right: 2px solid #000000;
 }
 
 #topWindowTollbar>h3 {
@@ -32,8 +34,6 @@
     background-color: transparent;
     display: grid;
     place-items: center;
-    background: #ffffff;
-    border-radius: 10px;
     margin: 0;
     border: 0;
     padding: 0;
@@ -42,9 +42,12 @@
     transition: all 0.25s ease;
 }
 
-#minimize:hover,
 #settings:hover {
-    background-color: #00aaff;
+    cursor: pointer;
+}
+
+#minimize:hover {
+    background-color: #00aaff7a;
 }
 
 #window:hover {
@@ -52,5 +55,5 @@
 }
 
 #close:hover {
-    background-color: #ff0000;
+    background-color: #ff00007a;
 }

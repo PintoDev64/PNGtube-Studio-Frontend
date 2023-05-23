@@ -6,15 +6,25 @@ import { Global } from '../contexts';
 
 // Reducer
 import GlobalReducer from './reducer';
+import { GlobalData } from "../../service/Services";
 
 export default function GlobalComponent({ children }) {
 
-    const { colorBackground, wallpaperBackground, typeBackground, wallpaperName, brightness, hardwareAcceleration, trayMenu } = window.pngtubeAPI.appConfig();
-
-    const files = window.pngtubeAPI.appResources();
+    const { data } = GlobalData();
+    const {
+        files,
+        colorBackground,
+        wallpaperBackground,
+        typeBackground,
+        wallpaperName,
+        brightness,
+        hardwareAcceleration,
+        trayMenu
+    } = data;
 
     const [Settings, setSettings] = useState(false);
     const [FullscreenMode, setFullscreenMode] = useState(false);
+    const [SectionState, setSectionState] = useState(0);
 
     const [defaultProps, setDefaultProps] = useState({
         color: colorBackground,
@@ -59,6 +69,30 @@ export default function GlobalComponent({ children }) {
         },
         fullscreenMode: () => {
             setFullscreenMode(!FullscreenMode)
+        },
+        setSection: (id) => {
+            setSectionState(id)
+        },
+        ForceReload: () => {
+            const {
+                colorBackground,
+                wallpaperBackground,
+                typeBackground,
+                wallpaperName,
+                brightness,
+                hardwareAcceleration,
+                trayMenu
+            } = window.pngtubeAPI.appConfig();
+            setDefaultProps({
+                color: colorBackground,
+                wallpaper: wallpaperBackground,
+                type: typeBackground,
+                name: wallpaperName,
+                resources: files,
+                brightness: brightness,
+                hardware: hardwareAcceleration,
+                tray: trayMenu
+            })
         }
     }
 
@@ -69,6 +103,7 @@ export default function GlobalComponent({ children }) {
             STATE_ACCESS,
             settings: Settings,
             FullscreenMode,
+            section: SectionState,
             functions
         }}>
             {children}

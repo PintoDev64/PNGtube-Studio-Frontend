@@ -35,7 +35,13 @@ export default function useAudioContext() {
                 Id: 1,
                 Component: Types,
                 functionsProp: capturerStateChange,
-                condition: !AudioState.capturerState ? 'flex-start' : 'flex-end',
+                condition: () => {
+                    if (!AudioState.capturerState) {
+                        return { justifyContent: 'flex-start', backgroundColor: '#535353' }
+                    } else {
+                        return { justifyContent: 'flex-end', backgroundColor: '#000099' }
+                    }
+                },
                 Data: {
                     type: typeComponents.COLUMN,
                     text: '¿Capturar audio?',

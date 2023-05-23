@@ -1,5 +1,5 @@
 // Node Modules
-import { Suspense, useCallback, useContext, useEffect, useMemo } from "react"
+import { Suspense, useContext } from "react"
 
 // Contexts
 import { Avatars } from "../context/contexts"
@@ -11,15 +11,13 @@ export default function ModelSelector() {
 
     const { stateModels, functionsModels, MODEL_ACCESS } = useContext(Avatars);
 
-    console.log(stateModels);
-
     function selectModel(id) {
         functionsModels.changeModelSelected(MODEL_ACCESS.select, id);
         functionsModels.changeModelData(MODEL_ACCESS.data, id);
     };
 
     return (
-        <Suspense fallback>
+        <Suspense fallback={<h3>Cargando...</h3>}>
             <div id="modelDetails">
                 <h3>Avatares</h3>
                 <hr className="hr-titles" />
@@ -30,7 +28,7 @@ export default function ModelSelector() {
                                 <li key={modelId} onClick={() => selectModel(modelName)}>
                                     <div className="modelMetadata">
                                         <div className="modelMetadata_IMG">
-                                            <img src={modelImage} width={100} height={100} />
+                                            <img src={modelImage} alt={modelName} width={100} height={100} />
                                         </div>
                                         <div className="modelMetadata_INFO">
                                             <div className="modelMetadata__Name">

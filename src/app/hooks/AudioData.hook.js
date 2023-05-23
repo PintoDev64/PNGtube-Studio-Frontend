@@ -15,6 +15,7 @@ export default function useMicrophone() {
 
     useEffect(() => {
         if (AudioState.capturerState) {
+
             let intervalTime;
             navigator.mediaDevices
                 .getUserMedia({ audio: { autoGainControl: false } })
@@ -59,7 +60,7 @@ export default function useMicrophone() {
                 });
             return () => clearInterval(intervalTime);
         }
-    }, []);
+    }, [AudioState.capturerState, ]);
 
     return {
         volume,

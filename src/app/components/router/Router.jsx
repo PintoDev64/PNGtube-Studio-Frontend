@@ -1,17 +1,24 @@
+import { useState } from "react";
+
+// Data
 import RoutesContent from "./RouterData";
 
 export default function RouterComponent({ functionProp }) {
+
+    const [Navigation, setNavigation] = useState(0)
+
     return (
         <nav id="RouterLinks">
             <ul>
                 {
-                    RoutesContent.map(buttonRoutes => {
+                    RoutesContent.map(({ id, name }) => {
                         return (
                             <li>
-                                <button className="ButtonSection" key={buttonRoutes.id} onClick={() => {
-                                    functionProp(buttonRoutes.id);
+                                <button className={`ButtonSection ${Navigation === id ? 'selected' : ''}`} key={id} onClick={() => {
+                                    setNavigation(id);
+                                    functionProp(id);
                                 }}>
-                                    <h3>{buttonRoutes.name}</h3>
+                                    <h3>{name}</h3>
                                 </button>
                             </li>
                         )

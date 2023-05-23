@@ -1,15 +1,27 @@
 // Contexts
-import useToolsPropagator from '../../hooks/ToolsPropagator.hook';
+import useTollsPropagator from "../../hooks/TollsPropagator.hook"
 
 export default function Tolls() {
 
-    const { TollsControllerPropagator } = useToolsPropagator()
+    const { TollsControllerPropagator } = useTollsPropagator()
 
     return (
         <div id="ButtonTools" className='tolltip_bar_buttons'>
             {
-                TollsControllerPropagator.Tools.map(({ Component, Id, execute, Data }) => {
-                    return ( <Component key={Id} functionProp={execute} props={Data}/> )
+                TollsControllerPropagator.Tolls.map(({ Component, Id, execute, Data }) => {
+                    return (<Component key={Id} functionProp={execute} props={Data} />)
+                })
+            }
+            <div style={{
+                width: 30,
+                height: 30,
+                margin: '0px 10px',
+                borderRadius: 20,
+                backgroundColor: '#000000'
+            }} />
+            {
+                TollsControllerPropagator.ModelOptions.map(({ Component, Id, execute, Data }) => {
+                    return (<Component key={Id} functionProp={execute} props={Data} />)
                 })
             }
         </div>

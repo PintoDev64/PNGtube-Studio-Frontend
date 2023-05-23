@@ -1,54 +1,28 @@
-import { useState, useContext, Suspense } from "react";
+import { useState, useContext, Suspense, useEffect } from "react";
 
 // Imports
 import SettingsSections from "./sectionsPropagator";
 
-// Components
-import Apareance from "./components/config/Apareance";
-import Advanced from "./components/config/Advanced";
-
 // Contexts
 import { Global } from "../../context/contexts";
-
-// Hooks
-import useSubmitConfig from "../../hooks/submitConfig.hook";
 
 // Css
 import './Settings.css'
 
+// Components
+import SaveSettings from "./components/screen/SaveSettings";
+import Options from "./components/Options";
+
 export default function Settings() {
 
-    const { SubmitConfig } = useSubmitConfig();
-
-    const { settings, functions, GlobalState, defaultProps } = useContext(Global);
+    const { settings, GlobalState, functions } = useContext(Global);
 
     const [Section, setSection] = useState(1);
 
-    /// Pseudo-Component
-    function Options({ StateSection }) {
-        if (StateSection === 1) return (
-            <Apareance />
-        )
-        if (StateSection === 2) return (
-            <Advanced />
-        )
-    };
-
-    /// Pseudo-Compoent
-    function SaveSettings() {
-        let settingsState = functions.compararObjetos(GlobalState, defaultProps);
-        if (settingsState === false) {
-            return (
-                <article id="SettingsRestart">
-                    <div className="text">
-                        <h4>Tienes cambios sin guardar</h4>
-                        <h6>Algunos cambios se reflejaran al reiniciar, si no guardas no se reflejaran en la proxima sesion</h6>
-                    </div>
-                    <button id="SaveSettingsButton" onClick={SubmitConfig}>Guardar</button>
-                </article>
-            )
-        }
-    }
+    useEffect(() => {
+        functions.ForceReload();
+        console.log(GlobalState);
+    }, [Section])
 
     if (settings) {
         return (
@@ -62,14 +36,14 @@ export default function Settings() {
                             <h3>Aplicacion</h3>
                             <ul>
                                 {
-                                    SettingsSections.map(section => {
+                                    SettingsSections.map(({ id, name, value }) => {
                                         return (
-                                            <li key={section.id} id={section.name} className="SettingsListOptions">
-                                                <button className={`SettingsListButtons ${Section === section.id ? 'selected' : ''}`} onClick={() => {
-                                                    setSection(section.id)
+                                            <li key={id} id={name} className="SettingsListOptions">
+                                                <button className={`SettingsListButtons ${Section === id ? 'selected' : ''}`} onClick={() => {
+                                                    setSection(id)
                                                 }}>
                                                     <h4>
-                                                        {section.value}
+                                                        {value}
                                                     </h4>
                                                 </button>
                                             </li>

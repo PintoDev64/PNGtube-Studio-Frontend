@@ -8,19 +8,14 @@ import { Global } from "../../context/contexts";
 import { Close, Minimize, Restore } from './executes';
 
 import './Admintools.css'
+import RouterComponent from '../router/Router';
 
 export default function AdminTool() {
 
-    const { settings, functions, GlobalState, FullscreenMode } = useContext(Global);
+    const { settings, functions, GlobalState } = useContext(Global);
 
     return (
-        <header id="AdminTool" style={
-            {
-                display: FullscreenMode ? 'none' : 'flex',
-                height: FullscreenMode ? 0 : 45,
-                zIndex: FullscreenMode ? -1 : 10,
-            }
-        }>
+        <header id="AdminTool">
             <div id="tolls">
                 <button onClick={() => {
                     functions.settings(!settings);
@@ -28,6 +23,7 @@ export default function AdminTool() {
                     <img src={GlobalState.resources['Settings-icon.png']} alt="Close-Window-Buttom" width="30" height="30" />
                 </button>
             </div>
+                <RouterComponent functionProp={functions.setSection} />
             <header id='topWindowTollbar'>
                 <h3>PNGTube Studio</h3>
             </header>

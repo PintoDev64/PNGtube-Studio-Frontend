@@ -4,8 +4,8 @@ import { useContext, Suspense } from "react";
 import { Global } from "../../../../context/contexts";
 
 // Hooks
-import useSettingsContentFunction from "../../../../hooks/componentsPropagator";
-import { fixRoute } from "../../../../controllers/fixRoute";
+import useSettingsContentFunction from "../../../../hooks/componentsPropagator.hook";
+import { fixRoute } from "../../../../tools/Tolls";
 
 export default function Apareance() {
 

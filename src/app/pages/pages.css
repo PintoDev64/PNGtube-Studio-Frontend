@@ -1,13 +1,13 @@
 #AsideModelOptions {
-    width: 400px;
+    background: #fff;
+    border-radius: 15px 0 0 15px;
+    box-sizing: border-box;
     height: auto;
     margin: 20px;
+    outline: 2px solid #000;
     padding: 20px;
-    background: #ffffff;
+    width: 400px;
     z-index: 2;
-    outline: 2px solid #000000;
-    box-sizing: border-box;
-    border-radius: 20px;
 }
 
 #modelDetails {
@@ -17,13 +17,13 @@
 }
 
 #modelDetails ul li {
-    margin: 10px 0 0 0;
     background: #c7c7c7;
-    cursor: pointer;
-    padding: 0 25px 0 10px;
-    border-radius: 15px;
+    border-radius: 15px 0 0 15px;
     box-sizing: border-box;
+    cursor: pointer;
     list-style: none;
+    margin: 10px 0 0;
+    padding: 0 25px 0 10px;
 }
 
 #modelDetails ul li:hover {

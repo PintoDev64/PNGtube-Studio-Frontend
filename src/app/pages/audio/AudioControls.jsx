@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, useContext, Suspense } from "react";
 import { AudioController, Global } from "../../context/contexts";
 
 // Hooks
-import useAudioContext from "../../hooks/AudioControlsPropagator";
-import useMicrophone from "../../hooks/AudioData";
+import useAudioContext from "../../hooks/AudioControlsPropagator.hook";
+import useMicrophone from "../../hooks/AudioData.hook";
 
 export default function AudioControls() {
 
@@ -64,10 +64,10 @@ export default function AudioControls() {
                                 <canvas id="AudioReferenceLevel" ref={canvasLevelRef} width={20} height={200} />
                                 <div className="AudioPropSeparator"></div>
                                 <ul id="ListVolumeLevelReference">
-                                    <li className="AudioLevel">80%</li>
-                                    <li className="AudioLevel">60%</li>
-                                    <li className="AudioLevel">40%</li>
-                                    <li className="AudioLevel">20%</li>
+                                    <li className="AudioLevel">◄&nbsp;80</li>
+                                    <li className="AudioLevel">◄&nbsp;60</li>
+                                    <li className="AudioLevel">◄&nbsp;40</li>
+                                    <li className="AudioLevel">◄&nbsp;20</li>
                                 </ul>
                                 <div id="AudioData">
                                     <div className="AudioData_Sectors">
@@ -89,6 +89,9 @@ export default function AudioControls() {
                                         <h5>{capturerState ? 'Activo' : 'Inactivo'}</h5>
                                         <hr className="hr-separators" />
                                         <h5> Estado </h5>
+                                    </div>
+                                    <div id="AudioData_Button">
+                                        <h5>Detectar Microfono</h5>
                                     </div>
                                 </div>
                             </div>

@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 
 // Hooks
-import useSettingsContentFunction from "../../../../hooks/componentsPropagator.hook";
+import useSettingsContentFunction from "../../../../hooks/componentsPropagator.hook"
 
-export default function Advanced() {
+export default function Backgrounds() {
 
     const { SettingsContent } = useSettingsContentFunction();
 
@@ -11,14 +11,12 @@ export default function Advanced() {
         <Suspense fallback={<h3>Cargando...</h3>}>
             <aside id="ApareanceOptions">
                 {
-                    SettingsContent.Advanced.map(({ Id, Component, functionsProp, condition, Data }) => {
+                    SettingsContent.Backgrounds.map(({ Id, Component, functionsProp, condition, Data }) => {
                         return (
                             <Component key={Id} functionProp={functionsProp} style={condition} props={Data} />
                         )
                     })
                 }
-                <div className="ApareanceOptions_Radio">
-                </div>
             </aside>
         </Suspense>
     )

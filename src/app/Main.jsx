@@ -6,19 +6,18 @@ import ModelSelector from './pages/ModelSelector';
 
 // Contexts
 import { Global } from './context/contexts';
-import RouterComponent from './components/router/router';
-import AudioControls from './service/Audio/AudioControls';
-import { fixRoute } from './controllers/fixRoute';
+import AudioControls from './pages/audio/AudioControls';
+import { fixRoute } from './tools/Tolls';
 import ModelViewer from './components/model/modelViewer';
+import ModelState from './pages/ModelState';
 
 export default function Main() {
 
-    const { GlobalState } = useContext(Global);
-
-    const [SectionState, setSectionState] = useState(0);
+    const { GlobalState, section } = useContext(Global);
 
     function SetSection({ id }) {
-        if (id === 1) return (<ModelSelector />);
+        if (id === 1) return <ModelSelector />;
+        if (id === 2) return <ModelState />
     };
 
     function imgURL() {
@@ -48,12 +47,11 @@ export default function Main() {
             <div id="MainSection" style={imgURL()} >
             </div>
             <div id="ModelOptionsSection">
-                <RouterComponent functionProp={setSectionState} />
                 <AudioControls />
                 {
-                    SectionState !== 0 && (
+                    section !== 0 && (
                         <aside id='AsideModelOptions'>
-                            <SetSection id={SectionState} />
+                            <SetSection id={section} />
                         </aside>
                     )
                 }
