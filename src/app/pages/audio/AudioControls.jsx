@@ -51,12 +51,12 @@ export default function AudioControls() {
                 left: Open ? 0 : '-425px'
             }}>
                 <button onClick={() => setOpen(!Open)} id="Op-CL_AudioControls">
-                    <img src={Open ? GlobalState.resources['AudioControlsRow_Left.png'] : GlobalState.resources['AudioControlsRow_Right.png']} alt="Open/Close AudioControls" />
+                    <img src={GlobalState.resources['Microphone.png']} alt="Open/Close AudioControls" />
                 </button>
-                <div id="AudioInfo">
+                <div className="AudioInfo">
                     <h3>Opciones de Audio</h3>
                     <hr className="hr-titles" />
-                    <ul id="AudioSections_UL">
+                    <ul className="AudioSections_UL">
                         <li className="AudioSections_LI">
                             <div id="CanvasDataMeasurer">
                                 <div id="AudioEventLevel" ref={divEventRef} />

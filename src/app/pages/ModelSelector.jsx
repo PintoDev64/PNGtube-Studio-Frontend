@@ -25,7 +25,10 @@ export default function ModelSelector() {
                     {
                         stateModels.models.map(({ modelId, modelImage, modelName, modelOwner, modelDate }) => {
                             return (
-                                <li key={modelId} onClick={() => selectModel(modelName)}>
+                                <li key={modelId} onClick={() => {
+                                    functionsModels.changeModelSelected(MODEL_ACCESS.spriteType, 0)
+                                    selectModel(modelName);
+                                }}>
                                     <div className="modelMetadata">
                                         <div className="modelMetadata_IMG">
                                             <img src={modelImage} alt={modelName} width={100} height={100} />

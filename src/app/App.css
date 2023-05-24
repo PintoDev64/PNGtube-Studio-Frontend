@@ -55,10 +55,11 @@
 }
 
 #ButtonTools {
-    bottom: 10px;
+    background-color: #fff;
+    bottom: 0px;
     display: flex;
-    left: 10px;
-    background-color: #ffffff;
+    margin: 0 20px 20px 0;
+    right: 0px;
     padding: 5px 10px;
     position: absolute;
     width: auto;
@@ -73,11 +74,11 @@
 #SaveSettingsButton {
     background-color: #048500;
     border: none;
-    border-radius: 30px;
-    outline: 1px solid #00ff00;
     color: #ffffff;
-    width: 100px;
     height: 30px;
+    border-bottom: 2px solid #000000;
+    width: 100px;
+    cursor: pointer;
 }
 
 .ApareanceOptions_Type,
@@ -212,6 +213,15 @@
     width: 100%;
 }
 
+.ApareanceOptions_Button {
+    display: grid;
+    height: 36px;
+    margin: 0 5px;
+    place-items: center;
+    width: 36px;
+    cursor: pointer;
+}
+
 .Color_Input,
 .Selector_input,
 .UploadFile {
@@ -227,7 +237,9 @@
 
 .Color_Input:hover,
 .Selector_input:hover,
+#SaveSettingsButton:hover,
 .UploadFile:hover {
+    color: #000000;
     background-color: #00000060;
 }
 
@@ -248,10 +260,9 @@
 }
 
 .ApareanceOptions_Lists {
-    outline: 2px solid #000000;
     box-sizing: border-box;
-    border-radius: 15px;
     height: 53vh;
+    outline: 2px solid #000;
     overflow: hidden;
 }
 
@@ -260,7 +271,7 @@
 }
 
 .ListSection {
-    height: 90%;
+    height: 47vh;
 }
 
 .TextDefinitionList {
@@ -275,11 +286,11 @@
 }
 
 .ListSection_Container {
+    height: 47vh;
+    list-style: none;
     overflow: hidden;
-    height: 51vh;
     overflow-y: auto;
     width: 100%;
-    list-style: none;
 }
 
 .listSection_Elements {
@@ -389,6 +400,7 @@
     border-top: none;
     box-sizing: border-box;
     padding: 5px 20px;
+    cursor: pointer;
 }
 
 .ButtonSection:hover {
@@ -399,19 +411,17 @@
 /* Audio Controls */
 #AudioControls {
     background: #fff;
-    border-radius: 0 15px 15px 0;
     box-sizing: border-box;
     height: auto;
     left: 0;
     margin: 20px;
-    outline: 2px solid #000;
     padding: 20px;
     position: absolute;
     width: 400px;
     z-index: 2;
 }
 
-#AudioInfo {
+.AudioInfo {
     width: 100%;
     height: 100%;
     text-align: center;
@@ -419,12 +429,11 @@
 
 .AudioSections_LI {
     background: #c7c7c7;
-    border-radius: 0 15px 15px 0;
     list-style: none;
     margin: 10px 0 0;
 }
 
-#AudioInfo ul li.AudioLevel {
+.AudioInfo ul li.AudioLevel {
     height: 100%;
     list-style: none;
     display: grid;
@@ -479,13 +488,14 @@
 
 #Op-CL_AudioControls {
     border: none;
-    border-radius: 0 11px 11px 0;
+    cursor: pointer;
     height: 50px;
-    outline: 1px solid #000;
+    top: 0;
     position: absolute;
     right: -15%;
     width: 50px;
-    cursor: pointer;
+    display: grid;
+    place-items: center;
 }
 
 #AudioEventLevel {

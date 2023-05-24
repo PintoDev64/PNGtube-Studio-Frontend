@@ -13,14 +13,14 @@ export default function Tolls() {
                 })
             }
             <div style={{
-                width: 30,
+                width: 5,
                 height: 30,
-                margin: '0px 10px',
+                margin: '0px 5px',
                 borderRadius: 20,
                 backgroundColor: '#000000'
             }} />
             {
-                TollsControllerPropagator.ModelOptions.map(({ Component, Id, execute, Data }) => {
+                TollsControllerPropagator.ModelOptions?.map(({ Component, Id, execute, Data }) => {
                     return (<Component key={Id} functionProp={execute} props={Data} />)
                 })
             }

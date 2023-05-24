@@ -10,14 +10,12 @@
 
 #SettingsSection {
     background: #fff;
-    border: 2px solid #000;
-    border-radius: 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     height: inherit;
-    min-height: 50vh;
     max-height: 70vh;
+    min-height: 50vh;
     overflow: hidden;
     width: 1000px;
 }
@@ -26,14 +24,15 @@
     z-index: 3;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-    border-top: 2px solid #000000;
-    background: #ffffff;
-    width: 100%;
+    background: #fff;
     height: 50px;
+    width: 1000px;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(-50%);
+    justify-content: space-around;
+    align-items: center;
 }
 
 #ApareancePreview {
@@ -51,8 +50,7 @@
 
 #ApareancePreview div,
 #ApareancePreview img {
-    border-radius: 20px;
-    width: auto;
+    margin: 0 0 10px 0;
 }
 
 #SettingsNav {

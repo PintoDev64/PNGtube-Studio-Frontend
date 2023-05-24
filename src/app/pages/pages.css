@@ -1,10 +1,8 @@
 #AsideModelOptions {
     background: #fff;
-    border-radius: 15px 0 0 15px;
     box-sizing: border-box;
     height: auto;
     margin: 20px;
-    outline: 2px solid #000;
     padding: 20px;
     width: 400px;
     z-index: 2;
@@ -18,7 +16,6 @@
 
 #modelDetails ul li {
     background: #c7c7c7;
-    border-radius: 15px 0 0 15px;
     box-sizing: border-box;
     cursor: pointer;
     list-style: none;
@@ -27,7 +24,7 @@
 }
 
 #modelDetails ul li:hover {
-    transform: scale(1.05);
+    border-left: 10px solid #000;
 }
 
 .modelMetadata {
@@ -45,7 +42,9 @@
 }
 
 .modelMetadata_IMG img {
-    border-radius: 15px;
+    border: none;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
 }
 
 .modelMetadata_INFO {

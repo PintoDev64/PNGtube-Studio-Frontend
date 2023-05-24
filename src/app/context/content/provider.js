@@ -21,13 +21,15 @@ export default function ModelSettings({ children }) {
         spriteType: 0,
         router: routeModels,
         data: responce.modelData,
-        models: Models
+        models: Models,
+        zoom: 250
     })
 
     const STATE_ACCESS = Object.freeze({
         select: 'select',
         spriteType: 'spriteType',
-        data: 'data'
+        data: 'data',
+        zoom: 'zoom'
     })
 
     const [state, dispatch] = useReducer(ModelReducer, ModelsState);

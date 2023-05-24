@@ -11,6 +11,11 @@ const SettingsSections = [
     },
     {
         id: 3,
+        name: 'models',
+        value: 'Modelos'
+    },
+    {
+        id: 4,
         name: 'advanced',
         value: 'Avanzado'
     }

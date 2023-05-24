@@ -15,17 +15,20 @@ export default function useTollsPropagator() {
     function ModelDataPropagator() {
         let responce = [];
         const { data } = stateModels;
-        data.States.forEach((_, index) => {
-            const SelectStateModel = () => setModelState(index);
-            responce.push({
-                Id: index,
-                Component: Button,
-                execute: SelectStateModel,
-                Data: {
-                    condition: GlobalState.resources['H-icon.png']
-                },
+        if (data.States.length > 1) {
+            data.States.forEach((_, index) => {
+                const SelectStateModel = () => setModelState(index);
+                responce.push({
+                    Id: index,
+                    Component: Button,
+                    execute: SelectStateModel,
+                    Data: {
+                        imgNone: `${index}`,
+                        condition: GlobalState.resources['H-icon.png']
+                    },
+                });
             });
-        });
+        }
         return responce;
     }
 
@@ -50,8 +53,7 @@ export default function useTollsPropagator() {
 
     // ModelOptions
     function setModelState(id) {
-        console.log(id);
-        functionsModels.getDataModel();
+        functionsModels.changeModelSelected(MODEL_ACCESS.spriteType, id)
     }
 
     const TollsControllerPropagator = {

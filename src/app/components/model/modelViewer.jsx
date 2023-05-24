@@ -87,7 +87,7 @@ export default function ModelViewer() {
 
 	const { volume } = useMicrophone();
 	const { AudioState } = useContext(AudioController);
-	const { select, router } = stateModels;
+	const { select, router, data, spriteType } = stateModels;
 	const { sensibility, capturerState } = AudioState;
 
 	useEffect(() => {
@@ -100,7 +100,9 @@ export default function ModelViewer() {
 
 	return (
 		<div ref={Viewer} id="ModelViewer">
-			<img ref={Model} id="ActualModel" src={fixRoute(`${router}\\${select}\\${select}.png`)} alt="ModelSpritesManager" width={500} height={500} style={{
+			<img ref={Model} id="ActualModel" src={
+				!Speak ? fixRoute(`${router}\\${select}\\${data.States[spriteType].first}.png`) : fixRoute(`${router}\\${select}\\${data.States[spriteType].last}.png`)
+			} alt="ModelSpritesManager" width={stateModels.zoom} height={stateModels.zoom} style={{
 				animation: Speak ? '0.8s ease 0s infinite normal none running shake' : 'none'
 			}} />
 		</div>

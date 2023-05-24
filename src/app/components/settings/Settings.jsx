@@ -15,14 +15,9 @@ import Options from "./components/Options";
 
 export default function Settings() {
 
-    const { settings, GlobalState, functions } = useContext(Global);
+    const { settings, GlobalState } = useContext(Global);
 
     const [Section, setSection] = useState(1);
-
-    useEffect(() => {
-        functions.ForceReload();
-        console.log(GlobalState);
-    }, [Section])
 
     if (settings) {
         return (
