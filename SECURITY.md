@@ -1,5 +1,4 @@
 # 🔰 Security policy
-
 > This changes if the update system is modified or changed.
 
 These versions are currently supported for feature updates, security, fixes, etc.
@@ -17,3 +16,5 @@ For any security report, please make an [Issue](https://github.com/PintoGamer64/
 - Description
 - Date of Test/Encounter of the error
 - Email (optional)
+
+> **I request clear specifications, including an example to complement serious images or captures, if necessary**
